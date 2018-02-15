@@ -133,33 +133,33 @@ Json::Value WaypointLibrary::getNames(){
   return ret;
 }
 
-double WaypointLibrary::distanceEarth(float fromLatDeg, float fromLonDeg, float toLatDeg, float toLonDeg) {
-  double earthRadiusKm = 6371.0;
-  double toLatRad, toLonRad, fromLatRad, fromLonRad, u, v;
+// double WaypointLibrary::distanceEarth(float fromLatDeg, float fromLonDeg, float toLatDeg, float toLonDeg) {
+//   double earthRadiusKm = 6371.0;
+//   double toLatRad, toLonRad, fromLatRad, fromLonRad, u, v;
   
-  fromLatRad = fromLatDeg * PI / 180;
-  fromLonRad = fromLonDeg * PI / 180;
-  toLatRad = toLatDeg * PI / 180;
-  toLonRad = toLonDeg * PI / 180;
+//   fromLatRad = fromLatDeg * PI / 180;
+//   fromLonRad = fromLonDeg * PI / 180;
+//   toLatRad = toLatDeg * PI / 180;
+//   toLonRad = toLonDeg * PI / 180;
   
-  u = sin((toLatRad - toLatRad)/2);
-  v = sin((toLonRad - fromLonRad)/2);
+//   u = sin((toLatRad - toLatRad)/2);
+//   v = sin((toLonRad - fromLonRad)/2);
   
-  return 2.0 * earthRadiusKm * asin(sqrt(u * u + cos(fromLatRad) * cos(toLatRad) * v * v));
-}
+//   return 2.0 * earthRadiusKm * asin(sqrt(u * u + cos(fromLatRad) * cos(toLatRad) * v * v));
+// }
 
-double WaypointLibrary::bearing(float fromLatDeg, float fromLonDeg, float toLatDeg, float toLonDeg) {
-    double toLatRad, toLonRad, fromLatRad, fromLonRad, y, x;
+// double WaypointLibrary::bearing(float fromLatDeg, float fromLonDeg, float toLatDeg, float toLonDeg) {
+//     double toLatRad, toLonRad, fromLatRad, fromLonRad, y, x;
   
-  fromLatRad = fromLatDeg * PI / 180;
-  fromLonRad = fromLonDeg * PI / 180;
-  toLatRad = toLatDeg * PI / 180;
-  toLonRad = toLonDeg * PI / 180;
+//   fromLatRad = fromLatDeg * PI / 180;
+//   fromLonRad = fromLonDeg * PI / 180;
+//   toLatRad = toLatDeg * PI / 180;
+//   toLonRad = toLonDeg * PI / 180;
 
-  y = sin (toLonRad - fromLonRad) * cos (toLatRad);
-  x = cos (fromLatRad) * sin (toLatRad) - sin (fromLatRad) * cos (toLatRad) * cos ( toLonRad - fromLonRad );
+//   y = sin (toLonRad - fromLonRad) * cos (toLatRad);
+//   x = cos (fromLatRad) * sin (toLatRad) - sin (fromLatRad) * cos (toLatRad) * cos ( toLonRad - fromLonRad );
 
-  double bearing = atan2 (y,x);
-  return bearing * 180 / PI;
-}
+//   double bearing = atan2 (y,x);
+//   return bearing * 180 / PI;
+// }
 
