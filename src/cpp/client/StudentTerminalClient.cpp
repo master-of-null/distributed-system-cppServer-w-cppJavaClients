@@ -68,7 +68,7 @@ int main(int argc, char*argv[]) {
    try {
       string inLine;
       while(true){
-         std::cout << "Enter end, getNames, get aName, remove aName, getById 123 >";
+         std::cout << "Enter end, getNames, get aName, remove aName >";
          std::getline (std::cin, inLine);
          vector<string> tokens;
          split(tokens, inLine, " ");

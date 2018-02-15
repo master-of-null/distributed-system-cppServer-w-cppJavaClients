@@ -28,10 +28,5 @@
         "method": "getNames",
         "params":[],
         "returns": [ ]
-    },
-    {   // getById(int id) --> String name of student with this id
-        "method": "getById",
-        "params":[25],
-        "returns": "Tim Lindquist"
     }
 ]
