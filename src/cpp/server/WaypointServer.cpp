@@ -49,6 +49,8 @@ public:
    virtual Json::Value get(const std::string& mediaName);
    virtual Json::Value getNames();
    virtual std::string getById(int studentId);
+   virtual double distanceEarth(float fromLatDeg, float fromLonDeg, float toLatDeg, float toLonDeg);
+   virtual double bearing(float fromLatDeg, float fromLonDeg, float toLatDeg, float toLonDeg);
    
 private:
    WaypointLibrary * library;
@@ -58,7 +60,7 @@ private:
 WaypointServer::WaypointServer(AbstractServerConnector &connector, int port) :
                              waypointserverstub(connector){
    library = new WaypointLibrary();
-   library->resetFromJsonFile("students.json");
+   library->resetFromJsonFile("waypoints.json");
    portNum = port;
 }
 
@@ -73,32 +75,32 @@ string WaypointServer::serviceInfo(){
 }
 
 bool WaypointServer::saveToJsonFile(){
-   cout << "saving collection to students.json" << endl;
-   bool ret = library->saveToJsonFile("students.json");
+   cout << "saving collection to waypoints.json" << endl;
+   bool ret = library->saveToJsonFile("waypoints.json");
    return ret;
 }
 
 bool WaypointServer::resetFromJsonFile(){
-   cout << "restoring collection from students.json" << endl;
-   bool ret = library->resetFromJsonFile("students.json");
+   cout << "restoring collection from waypoints.json" << endl;
+   bool ret = library->resetFromJsonFile("waypoints.json");
    return ret;
 }
 
-bool WaypointServer::add(const Json::Value& studentName) {
-   cout << "Adding " << studentName << endl;
-   bool ret = library->add(studentName);
+bool WaypointServer::add(const Json::Value& cityName) {
+   cout << "Adding " << cityName << endl;
+   bool ret = library->add(cityName);
    return ret;
 }
 
-bool WaypointServer::remove(const string& studentName) {
-   cout << "Removing " << studentName << endl;
-   bool ret = library->remove(studentName);
+bool WaypointServer::remove(const string& cityName) {
+   cout << "Removing " << cityName << endl;
+   bool ret = library->remove(cityName);
    return ret;
 }
 
-Json::Value WaypointServer::get(const string& studentName){
-   cout << "Getting " << studentName << endl;
-   return library->get(studentName);
+Json::Value WaypointServer::get(const string& cityName){
+   cout << "Getting " << cityName << endl;
+   return library->get(cityName);
 }
 
 Json::Value WaypointServer::getNames(){
@@ -106,11 +108,6 @@ Json::Value WaypointServer::getNames(){
    std::string names = fw.write(library->getNames());
    cout << "Get names returning: " << names  << endl;
    return library->getNames();
-}
-
-std::string WaypointServer::getById(int studentId){
-   cout << "getById returning: " << library->getById(studentId) << endl;
-   return library->getById(studentId);
 }
 
 void exiting(){
