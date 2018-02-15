@@ -28,5 +28,15 @@
         "method": "getNames",
         "params":[],
         "returns": [ ]
+    },
+    {   // 
+        "method": "distanceEarth",
+        "params":["","","",""],
+        "returns": 4.0
+    },
+    {   // 
+        "method": "bearing",
+        "params":["","","",""],
+        "returns": 4.0
     }
 ]

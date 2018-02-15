@@ -65,6 +65,8 @@ int main(int argc, char*argv[]) {
    HttpClient httpclient(host);
    waypointlibrarystub sc(httpclient);
    cout << "Connecting to host " << host << endl;
+
+   
    try {
       string inLine;
       while(true){
