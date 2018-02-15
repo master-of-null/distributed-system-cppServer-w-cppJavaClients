@@ -299,31 +299,7 @@ int main(int argc, char*argv[]) {
 
 
    
-   try {
-      string inLine;
-      while(true){
-         if(tokens[0]=="getNames"){
-            Json::Value result = sc.getNames();
-            cout << "server has students named: ";
-            for(int i=0; i<result.size(); i++){
-               cout << " " << result[i].asString();
-            }
-            cout << endl;
-            string resStr = result.toStyledString();
-            cout << "result of getNames as Json string: " << resStr;
-         } else if(tokens[0]=="get"){
-            Json::Value aMDinJson = sc.get(arg);
-            Waypoint md(aMDinJson);
-            md.print();
-         } else if(tokens[0]=="remove"){
-            bool res = sc.remove(arg);
-         } else if(tokens[0]=="end"){
-            break;
-         }
-      }
-
-   } catch (JsonRpcException e) {
-      cerr << e.what() << endl;
-   }
+   Client cm("C++ Waypoint Browser");
+   return (Fl::run());
 }
 
