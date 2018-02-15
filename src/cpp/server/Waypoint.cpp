@@ -60,7 +60,7 @@ Waypoint::Waypoint(const Json::Value& jsonObj){
       if(nameStr.compare(*i)==0){
          name = jsonM.asString();
       }else if(address.compare(*i)==0){
-         address = jsonM.asInt();
+         address = jsonM.asString();
       }else if(eleStr.compare(*i)==0){
          ele = jsonM.asInt();
       }else if(latStr.compare(*i)==0){
