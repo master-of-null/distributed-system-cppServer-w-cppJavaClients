@@ -100,12 +100,6 @@ int main(int argc, char*argv[]) {
             md.print();
          } else if(tokens[0]=="remove"){
             bool res = sc.remove(arg);
-         } else if(tokens[0]=="getById"){
-            std::stringstream ss(arg);
-            int id = 0;
-            ss >> id;
-            string res = sc.getById(id);
-            cout << "result of getById " << arg << " is " << res << endl;
          } else if(tokens[0]=="end"){
             break;
          }
