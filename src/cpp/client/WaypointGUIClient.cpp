@@ -57,7 +57,12 @@ using namespace std;
 
 
 WaypointLibrary *wpObjs = new WaypointLibrary();
-
+string host = "http://127.0.0.1:8080";
+if(argc>1){
+   host = string(argv[1]);
+}
+HttpClient httpclient(host);
+waypointlibrarystub sc(httpclient);
 
 class Client : public WaypointGUI {
 
@@ -281,12 +286,7 @@ class Client : public WaypointGUI {
 public:
   Client(const char * name = 0) : WaypointGUI(name) {
     // connect to server
-    string host = "http://127.0.0.1:8080";
-    if(argc>1){
-       host = string(argv[1]);
-    }
-    HttpClient httpclient(host);
-    waypointlibrarystub sc(httpclient);
+
     cout << "Connecting to host " << host << endl;
 
 
