@@ -85,7 +85,7 @@ class Client : public WaypointGUI {
          const Fl_Menu_Item &item = theWPChoice->menubutton()->menu()[i];
          if(!selected.compare(item.label())){  // if they are equal
             theWPChoice->menubutton()->remove(i);
-            wpObjs->remove(wp.name);
+            wpObjs->remove(selected);
             cout << "removed " << selected << endl;
             anInstance->printWaypoints();
             break;
