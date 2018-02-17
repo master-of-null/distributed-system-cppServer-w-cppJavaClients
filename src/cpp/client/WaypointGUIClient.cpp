@@ -107,181 +107,181 @@ class Client : public WaypointGUI {
       sc.remove(selected);
   }
 
-   static void ClickedAddWP(Fl_Widget * w, void * userdata) {
-      Client* anInstance = (Client*)userdata;
-      Fl_Input_Choice * fromWPChoice = anInstance->frWps;
-      Fl_Input_Choice * toWPChoice = anInstance->toWps;
-      Fl_Input * theLat = anInstance->latIn;
-      Fl_Input * theLon = anInstance->lonIn;
-      Fl_Input * theEle = anInstance->eleIn;
-      Fl_Input * theName = anInstance->nameIn;
-      Fl_Multiline_Input *theAddr = anInstance->addrIn;
+  //  static void ClickedAddWP(Fl_Widget * w, void * userdata) {
+  //     Client* anInstance = (Client*)userdata;
+  //     Fl_Input_Choice * fromWPChoice = anInstance->frWps;
+  //     Fl_Input_Choice * toWPChoice = anInstance->toWps;
+  //     Fl_Input * theLat = anInstance->latIn;
+  //     Fl_Input * theLon = anInstance->lonIn;
+  //     Fl_Input * theEle = anInstance->eleIn;
+  //     Fl_Input * theName = anInstance->nameIn;
+  //     Fl_Multiline_Input *theAddr = anInstance->addrIn;
       
-      std::string lat(theLat->value()), lon(theLon->value()), ele(theEle->value());
-      // what follows is not expedient, but shows how to convert to/from
-      // double and formatted C and C++ strings.
-      double latNum = atof(lat.c_str());  //convert from string to double
-      double lonNum = atof(lon.c_str());
-      double eleNum = atof(ele.c_str());
+  //     std::string lat(theLat->value()), lon(theLon->value()), ele(theEle->value());
+  //     // what follows is not expedient, but shows how to convert to/from
+  //     // double and formatted C and C++ strings.
+  //     double latNum = atof(lat.c_str());  //convert from string to double
+  //     double lonNum = atof(lon.c_str());
+  //     double eleNum = atof(ele.c_str());
       
-      char latFormat[10];
-      sprintf(latFormat,"%4.4f",latNum);  //format the double into a C string
-      std::string latCppStr(latFormat);   //convert formatted C str to C++ str
+  //     char latFormat[10];
+  //     sprintf(latFormat,"%4.4f",latNum);  //format the double into a C string
+  //     std::string latCppStr(latFormat);   //convert formatted C str to C++ str
 
-      std::string name(theName->value());
-      string addr(theAddr->value());
+  //     std::string name(theName->value());
+  //     string addr(theAddr->value());
       
-      Waypoint newWP = Waypoint(name, addr, eleNum, latNum, lonNum);
-      wpObjs->add(newWP);
+  //     Waypoint newWP = Waypoint(name, addr, eleNum, latNum, lonNum);
+  //     wpObjs->add(newWP);
 
-      fromWPChoice->add(newWP.name.c_str());
-      toWPChoice->add(newWP.name.c_str());
-      fromWPChoice->value(newWP.name.c_str());
-   }
+  //     fromWPChoice->add(newWP.name.c_str());
+  //     toWPChoice->add(newWP.name.c_str());
+  //     fromWPChoice->value(newWP.name.c_str());
+  //  }
 
-  static void ClickedModifyWP(Fl_Widget *w, void *userdata) {
-      Client* anInstance = (Client*)userdata;
-      Fl_Input_Choice * fromWPChoice = anInstance->frWps;
-      Fl_Input_Choice * toWPChoice = anInstance->toWps;
-      Fl_Input * theLat = anInstance->latIn;
-      Fl_Input * theLon = anInstance->lonIn;
-      Fl_Input * theEle = anInstance->eleIn;
-      Fl_Input * theName = anInstance->nameIn;
-      Fl_Multiline_Input *theAddr = anInstance->addrIn;
+  // static void ClickedModifyWP(Fl_Widget *w, void *userdata) {
+  //     Client* anInstance = (Client*)userdata;
+  //     Fl_Input_Choice * fromWPChoice = anInstance->frWps;
+  //     Fl_Input_Choice * toWPChoice = anInstance->toWps;
+  //     Fl_Input * theLat = anInstance->latIn;
+  //     Fl_Input * theLon = anInstance->lonIn;
+  //     Fl_Input * theEle = anInstance->eleIn;
+  //     Fl_Input * theName = anInstance->nameIn;
+  //     Fl_Multiline_Input *theAddr = anInstance->addrIn;
 
-      string lat(theLat->value()), lon(theLon->value()), ele(theEle->value());
-      // what follows is not expedient, but shows how to convert to/from
-      // double and formatted C and C++ strings.
-      double latNum = atof(lat.c_str());  //convert from string to double
-      double lonNum = atof(lon.c_str());
-      double eleNum = atof(ele.c_str());
+  //     string lat(theLat->value()), lon(theLon->value()), ele(theEle->value());
+  //     // what follows is not expedient, but shows how to convert to/from
+  //     // double and formatted C and C++ strings.
+  //     double latNum = atof(lat.c_str());  //convert from string to double
+  //     double lonNum = atof(lon.c_str());
+  //     double eleNum = atof(ele.c_str());
       
-      char latFormat[10];
-      sprintf(latFormat,"%4.4f",latNum);  //format the double into a C string
-      std::string latCppStr(latFormat);   //convert formatted C str to C++ str
-      cout << "Clicked Modify WP" << endl;
-      std::string name(theName->value());
-      string addr(theAddr->value());
+  //     char latFormat[10];
+  //     sprintf(latFormat,"%4.4f",latNum);  //format the double into a C string
+  //     std::string latCppStr(latFormat);   //convert formatted C str to C++ str
+  //     cout << "Clicked Modify WP" << endl;
+  //     std::string name(theName->value());
+  //     string addr(theAddr->value());
       
-      Waypoint wp = wpObjs->get(name);
-      wpObjs->remove(wp.name);
-      // wpObjs->add(Waypoint(name, addr, eleNum, latNum, lonNum)); // comment
-      wpObjs->add("{\"name\":\""+name+
-        "\",\"address\":\""+address+"\""+
-        "\",\"ele\":\""+eleNum+"\""+
-        "\",\"lat\":\""+latNum+"\""+
-        "\",\"lon\":\""+lonNum+"\"}");
-  }
+  //     Waypoint wp = wpObjs->get(name);
+  //     wpObjs->remove(wp.name);
+  //     // wpObjs->add(Waypoint(name, addr, eleNum, latNum, lonNum)); // comment
+  //     wpObjs->add("{\"name\":\""+name+
+  //       "\",\"address\":\""+address+"\""+
+  //       "\",\"ele\":\""+eleNum+"\""+
+  //       "\",\"lat\":\""+latNum+"\""+
+  //       "\",\"lon\":\""+lonNum+"\"}");
+  // }
   
-  static void SelectedFromWP(Fl_Widget * w, void * userdata) { // done
-      Client* anInstance = (Client*)userdata;
-      Fl_Input_Choice * frWps = anInstance->frWps;
-      Fl_Input * theLat = anInstance->latIn;
-      Fl_Input * theLon = anInstance->lonIn;
-      Fl_Input * theEle = anInstance->eleIn;
-      Fl_Input * theName = anInstance->nameIn;
-      Fl_Multiline_Input *theAddr = anInstance->addrIn;
+  // static void SelectedFromWP(Fl_Widget * w, void * userdata) { // done
+  //     Client* anInstance = (Client*)userdata;
+  //     Fl_Input_Choice * frWps = anInstance->frWps;
+  //     Fl_Input * theLat = anInstance->latIn;
+  //     Fl_Input * theLon = anInstance->lonIn;
+  //     Fl_Input * theEle = anInstance->eleIn;
+  //     Fl_Input * theName = anInstance->nameIn;
+  //     Fl_Multiline_Input *theAddr = anInstance->addrIn;
       
-      std::string selected(frWps->value());
-      std::cout << "You selected from waypoint "
-                << selected
-                << std::endl;
-      Waypoint wp = wpObjs->get(selected);
+  //     std::string selected(frWps->value());
+  //     std::cout << "You selected from waypoint "
+  //               << selected
+  //               << std::endl;
+  //     Waypoint wp = wpObjs->get(selected);
       
-      theName->value(wp.name.c_str());
-      theAddr->value(wp.address.c_str());
+  //     theName->value(wp.name.c_str());
+  //     theAddr->value(wp.address.c_str());
       
-      char latFormat[10], lonFormat[10], eleFormat[10];
-      sprintf(latFormat,"%4.4f",wp.lat);
-      sprintf(lonFormat,"%4.4f",wp.lon);
-      sprintf(eleFormat,"%4.4f",wp.ele);
-      theLat->value(latFormat);
-      theLon->value(lonFormat);
-      theEle->value(eleFormat);     
-   }
+  //     char latFormat[10], lonFormat[10], eleFormat[10];
+  //     sprintf(latFormat,"%4.4f",wp.lat);
+  //     sprintf(lonFormat,"%4.4f",wp.lon);
+  //     sprintf(eleFormat,"%4.4f",wp.ele);
+  //     theLat->value(latFormat);
+  //     theLon->value(lonFormat);
+  //     theEle->value(eleFormat);     
+  //  }
 
-   static void SelectedToWP(Fl_Widget * w, void * userdata) {
-      Client* anInstance = (Client*)userdata;
-      Fl_Input_Choice * toWps = anInstance->toWps;
-      Fl_Input * theLat = anInstance->latIn;
-      Fl_Input * theLon = anInstance->lonIn;
-      Fl_Input * theEle = anInstance->eleIn;
-      Fl_Input * theName = anInstance->nameIn;
-      Fl_Multiline_Input *theAddr = anInstance->addrIn;
+  //  static void SelectedToWP(Fl_Widget * w, void * userdata) {
+  //     Client* anInstance = (Client*)userdata;
+  //     Fl_Input_Choice * toWps = anInstance->toWps;
+  //     Fl_Input * theLat = anInstance->latIn;
+  //     Fl_Input * theLon = anInstance->lonIn;
+  //     Fl_Input * theEle = anInstance->eleIn;
+  //     Fl_Input * theName = anInstance->nameIn;
+  //     Fl_Multiline_Input *theAddr = anInstance->addrIn;
       
-      std::string selected(toWps->value());
-      std::cout << "You selected from waypoint "
-                << selected
-                << std::endl;
-      Waypoint wp = wpObjs->get(selected);
+  //     std::string selected(toWps->value());
+  //     std::cout << "You selected from waypoint "
+  //               << selected
+  //               << std::endl;
+  //     Waypoint wp = wpObjs->get(selected);
       
-      theName->value(wp.name.c_str());
-      theAddr->value(wp.address.c_str());
+  //     theName->value(wp.name.c_str());
+  //     theAddr->value(wp.address.c_str());
       
-      char latFormat[10], lonFormat[10], eleFormat[10];
-      sprintf(latFormat,"%4.4f",wp.lat);
-      sprintf(lonFormat,"%4.4f",wp.lon);
-      sprintf(eleFormat,"%4.4f",wp.ele);
-      theLat->value(latFormat);
-      theLon->value(lonFormat);
-      theEle->value(eleFormat);
-   }
+  //     char latFormat[10], lonFormat[10], eleFormat[10];
+  //     sprintf(latFormat,"%4.4f",wp.lat);
+  //     sprintf(lonFormat,"%4.4f",wp.lon);
+  //     sprintf(eleFormat,"%4.4f",wp.ele);
+  //     theLat->value(latFormat);
+  //     theLon->value(lonFormat);
+  //     theEle->value(eleFormat);
+  //  }
 
 
 
-   static void printWaypoints() {
-    vector<string> names = wpObjs->getNames();
-    for(string n : names) {
-      Waypoint wp = wpObjs->get(n);
-      cout << "Name: " << n << "Address: " << wp.address << "Ele: "
-      << wp.ele << "Lat: " << wp.lat << "Lon: " << wp.lon << endl;
+  //  static void printWaypoints() {
+  //   vector<string> names = wpObjs->getNames();
+  //   for(string n : names) {
+  //     Waypoint wp = wpObjs->get(n);
+  //     cout << "Name: " << n << "Address: " << wp.address << "Ele: "
+  //     << wp.ele << "Lat: " << wp.lat << "Lon: " << wp.lon << endl;
       
-    }
-   }
+  //   }
+  //  }
 
-  static void ClickedImportFile(Fl_Widget *w, void * userdata) {
-    Client* anInstance = (Client*)userdata;
-    Fl_Input_Choice * frWps = anInstance->frWps;
-    Fl_Input_Choice * toWps = anInstance->toWps;
-    cout << "Starting import from waypoints.json file" << endl;
-    wpObjs->initWaypointsFromJsonFile("waypoints.json");
-    vector<string> names = wpObjs->getNames();
-    for(string n : names) {
-      frWps->add(n.c_str());
-      toWps->add(n.c_str());
+  // static void ClickedImportFile(Fl_Widget *w, void * userdata) {
+  //   Client* anInstance = (Client*)userdata;
+  //   Fl_Input_Choice * frWps = anInstance->frWps;
+  //   Fl_Input_Choice * toWps = anInstance->toWps;
+  //   cout << "Starting import from waypoints.json file" << endl;
+  //   wpObjs->initWaypointsFromJsonFile("waypoints.json");
+  //   vector<string> names = wpObjs->getNames();
+  //   for(string n : names) {
+  //     frWps->add(n.c_str());
+  //     toWps->add(n.c_str());
       
-    }
-    cout << "Done initializing from waypoints.json" << endl;
-  }
+  //   }
+  //   cout << "Done initializing from waypoints.json" << endl;
+  // }
 
-  static void ClickedExportFile(Fl_Widget *w, void *userdata) {
-    wpObjs->toJsonFile("waypoints_out.json");
-    cout << "Exported to file: waypoints.json" << endl;
-  }
+  // static void ClickedExportFile(Fl_Widget *w, void *userdata) {
+  //   wpObjs->toJsonFile("waypoints_out.json");
+  //   cout << "Exported to file: waypoints.json" << endl;
+  // }
 
-  static void getDistanceAndBearing(Fl_Widget *w, void *userdata) {
-    Client* anInstance = (Client*)userdata;
-    Fl_Input_Choice * frWps = anInstance->frWps;
-    Fl_Input_Choice * toWps = anInstance->toWps;
-    Fl_Input * distBear = anInstance->distBearIn;
+  // static void getDistanceAndBearing(Fl_Widget *w, void *userdata) {
+  //   Client* anInstance = (Client*)userdata;
+  //   Fl_Input_Choice * frWps = anInstance->frWps;
+  //   Fl_Input_Choice * toWps = anInstance->toWps;
+  //   Fl_Input * distBear = anInstance->distBearIn;
 
-    Waypoint frWp = wpObjs->get(frWps->value());
-    Waypoint toWp = wpObjs->get(toWps->value());
+  //   Waypoint frWp = wpObjs->get(frWps->value());
+  //   Waypoint toWp = wpObjs->get(toWps->value());
 
-    double distance = wpObjs->distanceEarth(frWp.lat, frWp.lon, toWp.lat, toWp.lon);
-    char distFormat[10];
-    sprintf(distFormat,"%4.2f",distance);
-    string dist(distFormat);
-    double degree = wpObjs->bearing(frWp.lat, frWp.lon, toWp.lat, toWp.lon);
-    char degFormat[10];
-    sprintf(degFormat, "%4.2f", degree);
-    string deg(degFormat);
+  //   double distance = wpObjs->distanceEarth(frWp.lat, frWp.lon, toWp.lat, toWp.lon);
+  //   char distFormat[10];
+  //   sprintf(distFormat,"%4.2f",distance);
+  //   string dist(distFormat);
+  //   double degree = wpObjs->bearing(frWp.lat, frWp.lon, toWp.lat, toWp.lon);
+  //   char degFormat[10];
+  //   sprintf(degFormat, "%4.2f", degree);
+  //   string deg(degFormat);
 
-    string whole = dist + "km at " + deg + " degrees";
+  //   string whole = dist + "km at " + deg + " degrees";
     
-    distBear->value(whole.c_str());
+  //   distBear->value(whole.c_str());
     
-  }
+  // }
 
 
 
@@ -289,13 +289,13 @@ public:
    Client(const char * name = 0) : WaypointGUI(name) {
       
       removeWPButt->callback(ClickedRemoveWP, (void*)this);
-      addWPButt->callback(ClickedAddWP, (void*)this);
-      modWPButt->callback(ClickedModifyWP, (void*)this);
-      frWps->callback(SelectedFromWP, (void*)this);
-      toWps->callback(SelectedToWP, (void*)this);
-      getLatLonButt->callback(ClickedImportFile, (void*)this);
-      exportJson->callback(ClickedExportFile, (void*)this);
-      distBearButt->callback(getDistanceAndBearing, (void*)this);
+      // addWPButt->callback(ClickedAddWP, (void*)this);
+      // modWPButt->callback(ClickedModifyWP, (void*)this);
+      // frWps->callback(SelectedFromWP, (void*)this);
+      // toWps->callback(SelectedToWP, (void*)this);
+      // getLatLonButt->callback(ClickedImportFile, (void*)this);
+      // exportJson->callback(ClickedExportFile, (void*)this);
+      // distBearButt->callback(getDistanceAndBearing, (void*)this);
       callback(ClickedX);
    }
 };
