@@ -231,8 +231,8 @@ class Client : public WaypointGUI {
     vector<string> names = wpObjs->getNames();
     for(string n : names) {
       Json::Value wp = wpObjs->get(n);
-      cout << "Name: " << n << "Address: " << wp[address] << "Ele: "
-      << wp[ele] << "Lat: " << wp[lat] << "Lon: " << wp[lon] << endl;
+      cout << "Name: " << n << "Address: " << wp["address"] << "Ele: "
+      << wp["ele"] << "Lat: " << wp["lat"] << "Lon: " << wp["lon"] << endl;
       
     }
    }
