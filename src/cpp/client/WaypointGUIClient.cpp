@@ -38,7 +38,6 @@
 #include <jsonrpccpp/client/connectors/httpclient.h>
 #include <json/json.h>
 #include "waypointlibrarystub.h"
-#include "../server/Waypoint.hpp"
 #include "../server/WaypointLibrary.hpp"
 
 #include "WaypointGUI.cpp"
@@ -58,13 +57,7 @@ using namespace std;
 
 
 WaypointLibrary *wpObjs = new WaypointLibrary();
-string host = "http://127.0.0.1:8080";
-if(argc>1){
-   host = string(argv[1]);
-}
-HttpClient httpclient(host);
-waypointlibrarystub sc(httpclient);
-cout << "Connecting to host " << host << endl;
+
 
 class Client : public WaypointGUI {
 
@@ -302,9 +295,15 @@ public:
 
 int main(int argc, char*argv[]) {
 
+  string host = "http://127.0.0.1:8080";
+  if(argc>1){
+     host = string(argv[1]);
+  }
+  HttpClient httpclient(host);
+  waypointlibrarystub sc(httpclient);
+  cout << "Connecting to host " << host << endl;
 
-   
-   Client cm("C++ Waypoint Browser");
-   return (Fl::run());
+  Client cm("C++ Waypoint Browser");
+  return (Fl::run());
 }
 
