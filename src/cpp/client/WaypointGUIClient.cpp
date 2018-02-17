@@ -92,7 +92,7 @@ class Client : public WaypointGUI {
          const Fl_Menu_Item &item = theWPChoice->menubutton()->menu()[i];
          if(!selected.compare(item.label())){  // if they are equal
             theWPChoice->menubutton()->remove(i);
-            wpObjs->remove(wp);
+            wpObjs->remove(wp.name);
             cout << "removed " << selected << endl;
             anInstance->printWaypoints();
             break;
@@ -164,8 +164,13 @@ class Client : public WaypointGUI {
       string addr(theAddr->value());
       
       Waypoint wp = wpObjs->get(name);
-      wpObjs->remove(wp);
-      wpObjs->add(Waypoint(name, addr, eleNum, latNum, lonNum));
+      wpObjs->remove(wp.name);
+      // wpObjs->add(Waypoint(name, addr, eleNum, latNum, lonNum)); // comment
+      wpObjs->add("{\"name\":\""+name+
+        "\",\"address\":\""+address+"\""+
+        "\",\"ele\":\""+eleNum+"\""+
+        "\",\"lat\":\""+latNum+"\""+
+        "\",\"lon\":\""+lonNum+"\"}");
   }
   
   static void SelectedFromWP(Fl_Widget * w, void * userdata) { // done
