@@ -279,29 +279,32 @@ class Client : public WaypointGUI {
 
 
 public:
-   Client(const char * name = 0) : WaypointGUI(name) {
-      
-      removeWPButt->callback(ClickedRemoveWP, (void*)this);
-      // addWPButt->callback(ClickedAddWP, (void*)this);
-      // modWPButt->callback(ClickedModifyWP, (void*)this);
-      // frWps->callback(SelectedFromWP, (void*)this);
-      // toWps->callback(SelectedToWP, (void*)this);
-      // getLatLonButt->callback(ClickedImportFile, (void*)this);
-      // exportJson->callback(ClickedExportFile, (void*)this);
-      // distBearButt->callback(getDistanceAndBearing, (void*)this);
-      callback(ClickedX);
-   }
+  Client(const char * name = 0) : WaypointGUI(name) {
+    // connect to server
+    string host = "http://127.0.0.1:8080";
+    if(argc>1){
+       host = string(argv[1]);
+    }
+    HttpClient httpclient(host);
+    waypointlibrarystub sc(httpclient);
+    cout << "Connecting to host " << host << endl;
+
+
+    removeWPButt->callback(ClickedRemoveWP, (void*)this);
+    // addWPButt->callback(ClickedAddWP, (void*)this);
+    // modWPButt->callback(ClickedModifyWP, (void*)this);
+    // frWps->callback(SelectedFromWP, (void*)this);
+    // toWps->callback(SelectedToWP, (void*)this);
+    // getLatLonButt->callback(ClickedImportFile, (void*)this);
+    // exportJson->callback(ClickedExportFile, (void*)this);
+    // distBearButt->callback(getDistanceAndBearing, (void*)this);
+    callback(ClickedX);
+  }
 };
 
 int main(int argc, char*argv[]) {
 
-  string host = "http://127.0.0.1:8080";
-  if(argc>1){
-     host = string(argv[1]);
-  }
-  HttpClient httpclient(host);
-  waypointlibrarystub sc(httpclient);
-  cout << "Connecting to host " << host << endl;
+
 
   Client cm("C++ Waypoint Browser");
   return (Fl::run());
