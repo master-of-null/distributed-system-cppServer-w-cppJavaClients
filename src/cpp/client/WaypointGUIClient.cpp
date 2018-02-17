@@ -263,11 +263,11 @@ class Client : public WaypointGUI {
     Waypoint frWp = wpObjs->get(frWps->value());
     Waypoint toWp = wpObjs->get(toWps->value());
 
-    double distance = wpObjs->distanceEarth(frWp, toWp);
+    double distance = wpObjs->distanceEarth(frWp.lat, frWp.lon, toWp.lat, toWp.lon);
     char distFormat[10];
     sprintf(distFormat,"%4.2f",distance);
     string dist(distFormat);
-    double degree = wpObjs->bearing(frWp, toWp);
+    double degree = wpObjs->bearing(frWp.lat, frWp.lon, toWp.lat, toWp.lon);
     char degFormat[10];
     sprintf(degFormat, "%4.2f", degree);
     string deg(degFormat);
