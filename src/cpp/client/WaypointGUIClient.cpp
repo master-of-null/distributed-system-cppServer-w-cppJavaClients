@@ -314,7 +314,7 @@ public:
     // connect to server
 
     std::cout << "Connecting to host " << host << std::endl;
-
+    resetNames((void*)this);
 
     removeWPButt->callback(ClickedRemoveWP, (void*)this);
     // addWPButt->callback(ClickedAddWP, (void*)this);
