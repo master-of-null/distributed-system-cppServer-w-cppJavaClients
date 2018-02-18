@@ -31,12 +31,12 @@
     },
     {   // 
         "method": "distanceEarth",
-        "params":["","","",""],
+        "params":[1.0,1.0,1.0,1.0],
         "returns": 4.0
     },
     {   // 
         "method": "bearing",
-        "params":["","","",""],
+        "params":[1.0,1.0,1.0,1.0],
         "returns": 4.0
     }
 ]
