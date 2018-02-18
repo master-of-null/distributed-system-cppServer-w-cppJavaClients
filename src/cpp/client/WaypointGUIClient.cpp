@@ -238,7 +238,7 @@ class Client : public WaypointGUI {
    }
 
   static void ClickedImportFile(Fl_Widget *w, void * userdata) {
-    resetNames((void* userdata));
+    resetNames((void*) userdata);
     std::cout << "Starting import from waypoints.json file from Server" << std::endl;
       
     }
