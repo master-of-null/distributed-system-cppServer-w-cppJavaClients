@@ -291,8 +291,8 @@ class Client : public WaypointGUI {
     for(vector<string>::const_iterator i = mbr.begin();
       i != mbr.end(); i++) { // for each JSON Value do:
       
-      toWPChoice->add(value[*i].asString());
-      fromWPChoice->add(value[*i].asString());
+      toWPChoice->add(names[*i].asString());
+      fromWPChoice->add(names[*i].asString());
       // Json::Value jsonWaypoint = value[*i];
       // string cityStr = "city";
 
