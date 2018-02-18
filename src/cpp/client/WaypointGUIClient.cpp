@@ -246,10 +246,10 @@ class Client : public WaypointGUI {
     Json::Value frWp = sc.get(frWps->value());
     Json::Value toWp = sc.get(toWps->value());
 
-    fromLat = frWp["lat"].asDouble()
-    fromLon = frWp["lon"].asDouble()
-    toLat = toWp["lat"].asDouble()
-    toLon = toWp["lon"].asDouble()
+    fromLat = frWp["lat"].asDouble();
+    fromLon = frWp["lon"].asDouble();
+    toLat = toWp["lat"].asDouble();
+    toLon = toWp["lon"].asDouble();
 
     double distance = sc.distanceEarth(fromLat, fromLon, toLat, toLon);
     char distFormat[10];
