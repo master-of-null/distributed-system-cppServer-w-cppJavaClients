@@ -233,7 +233,7 @@ class Client : public WaypointGUI {
   // }
 
   static void ClickedExportFile(Fl_Widget *w, void *userdata) {
-    if(sc.saveToJsonFile("waypoints_out.json"))
+    if(sc.saveToJsonFile())
       std::cout << "Exported to file: waypoints.json" << std::endl;
   }
 
