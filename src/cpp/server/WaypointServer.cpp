@@ -75,7 +75,7 @@ string WaypointServer::serviceInfo(){
 
 bool WaypointServer::saveToJsonFile(){
    cout << "saving collection to waypoints.json" << endl;
-   bool ret = library->saveToJsonFile("waypoints_out.json");
+   bool ret = library->saveToJsonFile("waypoints.json");
    return ret;
 }
 

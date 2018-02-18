@@ -190,32 +190,32 @@ class Client : public WaypointGUI {
   //     theEle->value(eleFormat);     
   //  }
 
-  //  static void SelectedToWP(Fl_Widget * w, void * userdata) {
-  //     Client* anInstance = (Client*)userdata;
-  //     Fl_Input_Choice * toWps = anInstance->toWps;
-  //     Fl_Input * theLat = anInstance->latIn;
-  //     Fl_Input * theLon = anInstance->lonIn;
-  //     Fl_Input * theEle = anInstance->eleIn;
-  //     Fl_Input * theName = anInstance->nameIn;
-  //     Fl_Multiline_Input *theAddr = anInstance->addrIn;
+   static void SelectedToWP(Fl_Widget * w, void * userdata) {
+      Client* anInstance = (Client*)userdata;
+      Fl_Input_Choice * toWps = anInstance->toWps;
+      Fl_Input * theLat = anInstance->latIn;
+      Fl_Input * theLon = anInstance->lonIn;
+      Fl_Input * theEle = anInstance->eleIn;
+      Fl_Input * theName = anInstance->nameIn;
+      Fl_Multiline_Input *theAddr = anInstance->addrIn;
       
-  //     std::string selected(toWps->value());
-  //     std::cout << "You selected from waypoint "
-  //               << selected
-  //               << std::endl;
-  //     Waypoint wp = wpObjs->get(selected);
+      std::string selected(toWps->value());
+      std::cout << "You selected from waypoint "
+                << selected
+                << std::endl;
+      Json::Value wp = sc.get(selected);
+      std::cout << "yellowww " << wp << endl;
+      // theName->value(wp.name.c_str());
+      // theAddr->value(wp.address.c_str());
       
-  //     theName->value(wp.name.c_str());
-  //     theAddr->value(wp.address.c_str());
-      
-  //     char latFormat[10], lonFormat[10], eleFormat[10];
-  //     sprintf(latFormat,"%4.4f",wp.lat);
-  //     sprintf(lonFormat,"%4.4f",wp.lon);
-  //     sprintf(eleFormat,"%4.4f",wp.ele);
-  //     theLat->value(latFormat);
-  //     theLon->value(lonFormat);
-  //     theEle->value(eleFormat);
-  //  }
+      // char latFormat[10], lonFormat[10], eleFormat[10];
+      // sprintf(latFormat,"%4.4f",wp.lat);
+      // sprintf(lonFormat,"%4.4f",wp.lon);
+      // sprintf(eleFormat,"%4.4f",wp.ele);
+      // theLat->value(latFormat);
+      // theLon->value(lonFormat);
+      // theEle->value(eleFormat);
+   }
 
 
 
@@ -287,7 +287,7 @@ public:
     // addWPButt->callback(ClickedAddWP, (void*)this);
     // modWPButt->callback(ClickedModifyWP, (void*)this);
     // frWps->callback(SelectedFromWP, (void*)this);
-    // toWps->callback(SelectedToWP, (void*)this);
+    toWps->callback(SelectedToWP, (void*)this);
     getLatLonButt->callback(ClickedImportFile, (void*)this);
     exportJson->callback(ClickedExportFile, (void*)this);
     // distBearButt->callback(getDistanceAndBearing, (void*)this);
