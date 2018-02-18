@@ -209,9 +209,11 @@ class Client : public WaypointGUI {
       theAddr->value(wp["address"].asString().c_str());
       
       char latFormat[10], lonFormat[10], eleFormat[10];
+      std::cout << wp["lat"] << endl;
       sprintf(latFormat,"%4.4f",wp["lat"]);
       sprintf(lonFormat,"%4.4f",wp["lon"]);
       sprintf(eleFormat,"%4.4f",wp["ele"]);
+      std::cout << latFormat << endl;
       theLat->value(latFormat);
       theLon->value(lonFormat);
       theEle->value(eleFormat);
