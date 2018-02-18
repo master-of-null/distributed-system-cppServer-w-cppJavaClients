@@ -109,13 +109,11 @@ Json::Value WaypointServer::getNames(){
    return library->getNames();
 }
 
-double distanceEarth(double fromLatDeg, double fromLonDeg, double toLatDeg, double toLonDeg){
-   library = new WaypointLibrary();
+double WaypointServer::distanceEarth(double fromLatDeg, double fromLonDeg, double toLatDeg, double toLonDeg){
    return library->distanceEarth(fromLatDeg, fromLonDeg, toLatDeg, toLonDeg);
 }
 
-double bearing(double fromLatDeg, double fromLonDeg, double toLatDeg, double toLonDeg){
-   library = new WaypointLibrary();
+double WaypointServer::bearing(double fromLatDeg, double fromLonDeg, double toLatDeg, double toLonDeg){
    return library->bearing(fromLatDeg, fromLonDeg, toLatDeg, toLonDeg);
 }
 
