@@ -287,26 +287,11 @@ class Client : public WaypointGUI {
     Fl_Input_Choice * fromWPChoice = anInstance->frWps;
     Fl_Input_Choice * toWPChoice = anInstance->toWps;
 
-    // Json::Value::Members mbr = names.getMemberNames(); // get JSON values
-    // for(vector<string>::const_iterator i = mbr.begin();
-    //   i != mbr.end(); i++) 
     for(auto itr : names)
-      { // for each JSON Value do:
+    { // for each JSON Value do:
       std::cout << "hey there " << itr.asString() << endl;
-      // toWPChoice->add(names[*i].asString());
-      // fromWPChoice->add(names[*i].asString());
-      // Json::Value jsonWaypoint = value[*i];
-      // string cityStr = "city";
-
-      // string name = jsonWaypoint["name"].asString();
-      // string address = jsonWaypoint["address"].asString();
-      // float ele = jsonWaypoint["ele"].asFloat();
-      // float lat = jsonWaypoint["lat"].asFloat();
-      // float lon = jsonWaypoint["lon"].asFloat();
-
-      // Waypoint *wp = new Waypoint(name, address, ele, lat, lon);
-      // // wp->print();
-      // waypoints[*i] = *wp;
+      toWPChoice->add(itr.asString());
+      fromWPChoice->add(itr.asString());
     }
   }
 
