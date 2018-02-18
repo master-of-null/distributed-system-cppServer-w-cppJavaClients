@@ -91,7 +91,7 @@ class Client : public WaypointGUI {
          if(!selected.compare(item.label())){  // if they are equal
             theWPChoice->menubutton()->remove(i);
             wpObjs->remove(selected);
-            cout << "removed " << selected << endl;
+            std::cout << "removed " << selected << std::endl;
             anInstance->printWaypoints();
             break;
          }
@@ -157,7 +157,7 @@ class Client : public WaypointGUI {
   //     char latFormat[10];
   //     sprintf(latFormat,"%4.4f",latNum);  //format the double into a C string
   //     std::string latCppStr(latFormat);   //convert formatted C str to C++ str
-  //     cout << "Clicked Modify WP" << endl;
+  //     std::cout << "Clicked Modify WP" << std::endl;
   //     std::string name(theName->value());
   //     string addr(theAddr->value());
       
@@ -231,18 +231,18 @@ class Client : public WaypointGUI {
     Json::Value names = wpObjs->getNames();
     // for(string n : names) {
     //   Json::Value wp = wpObjs->get(n);
-    //   cout << "Name: " << n << "Address: " << wp["address"] << "Ele: "
-    //   << wp["ele"] << "Lat: " << wp["lat"] << "Lon: " << wp["lon"] << endl;
+    //   std::cout << "Name: " << n << "Address: " << wp["address"] << "Ele: "
+    //   << wp["ele"] << "Lat: " << wp["lat"] << "Lon: " << wp["lon"] << std::endl;
       
     // }
-    cout << names << endl;
+    std::cout << names << std::endl;
    }
 
   // static void ClickedImportFile(Fl_Widget *w, void * userdata) {
   //   Client* anInstance = (Client*)userdata;
   //   Fl_Input_Choice * frWps = anInstance->frWps;
   //   Fl_Input_Choice * toWps = anInstance->toWps;
-  //   cout << "Starting import from waypoints.json file" << endl;
+  //   std::cout << "Starting import from waypoints.json file" << std::endl;
   //   wpObjs->initWaypointsFromJsonFile("waypoints.json");
   //   vector<string> names = wpObjs->getNames();
   //   for(string n : names) {
@@ -250,12 +250,12 @@ class Client : public WaypointGUI {
   //     toWps->add(n.c_str());
       
   //   }
-  //   cout << "Done initializing from waypoints.json" << endl;
+  //   std::cout << "Done initializing from waypoints.json" << std::endl;
   // }
 
   // static void ClickedExportFile(Fl_Widget *w, void *userdata) {
   //   wpObjs->toJsonFile("waypoints_out.json");
-  //   cout << "Exported to file: waypoints.json" << endl;
+  //   std::cout << "Exported to file: waypoints.json" << std::endl;
   // }
 
   // static void getDistanceAndBearing(Fl_Widget *w, void *userdata) {
@@ -288,7 +288,7 @@ public:
   Client(const char * name = 0) : WaypointGUI(name) {
     // connect to server
 
-    cout << "Connecting to host " << host << endl;
+    std::cout << "Connecting to host " << host << std::endl;
 
 
     removeWPButt->callback(ClickedRemoveWP, (void*)this);
