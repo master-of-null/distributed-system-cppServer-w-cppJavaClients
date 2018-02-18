@@ -127,7 +127,7 @@
             <property name="cxxflag" value="-std=c++14"/>
             <property name="includepath" value="/usr/local/include:/usr/include/jsoncpp"/>
             <property name="client.lib.path" value="/usr/local/lib"/>
-            <property name="client.lib.list" value="jsoncpp,jsonrpccpp-client,jsonrpccpp-common,fltk,microhttpd,stdc++"/>
+            <property name="client.lib.list" value="jsoncpp,jsonrpccpp-client,jsonrpccpp-common,fltk,m,microhttpd,stdc++"/>
             <property name="server.lib.path" value="/usr/local/lib"/>
             <property name="server.lib.list" value="jsoncpp,jsonrpccpp-server,jsonrpccpp-common,m,microhttpd,stdc++"/>
          </then>
