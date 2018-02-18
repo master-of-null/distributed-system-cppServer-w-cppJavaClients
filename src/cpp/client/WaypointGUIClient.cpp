@@ -290,8 +290,8 @@ class Client : public WaypointGUI {
     for(auto itr : names)
     { // for each JSON Value do:
       std::cout << "hey there " << itr.asString() << endl;
-      toWPChoice->add(itr.asString());
-      fromWPChoice->add(itr.asString());
+      toWPChoice->add(itr.asString().c_str());
+      fromWPChoice->add(itr.asString().c_str());
     }
   }
 
