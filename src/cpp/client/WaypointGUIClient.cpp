@@ -177,6 +177,7 @@ class Client : public WaypointGUI {
                 << selected
                 << std::endl;
       Json::Value wp = sc.get(selected);
+      std::cout << selected << endl;
       
       theName->value(wp["name"].asString().c_str());
       theAddr->value(wp["address"].asString().c_str());
@@ -209,11 +210,9 @@ class Client : public WaypointGUI {
       theAddr->value(wp["address"].asString().c_str());
       
       char latFormat[10], lonFormat[10], eleFormat[10];
-      std::cout << wp << endl;
       sprintf(latFormat,"%4.4f",wp["lat"].asDouble());
       sprintf(lonFormat,"%4.4f",wp["lon"].asDouble());
       sprintf(eleFormat,"%4.4f",wp["ele"].asDouble());
-      std::cout << latFormat << endl;
       theLat->value(latFormat);
       theLon->value(lonFormat);
       theEle->value(eleFormat);
