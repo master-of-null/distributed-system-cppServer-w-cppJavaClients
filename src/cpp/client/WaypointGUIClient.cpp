@@ -55,7 +55,6 @@
 // using namespace jsonrpc;
 
 
-WaypointLibrary *wpObjs = new WaypointLibrary();
 string host = "http://127.0.0.1:8080";
 // if(argc>1){
 //    host = string(argv[1]);
@@ -81,17 +80,12 @@ class Client : public WaypointGUI {
       Client* anInstance = (Client*)userdata;
       Fl_Input_Choice * theWPChoice = anInstance->frWps;
       std::string selected(theWPChoice->value());
-      std::cout << "You clicked the remove waypoint button with "
-                << selected
-                << std::endl;
-      // Waypoint wp = wpObjs->get(selected);
+
       for (int i=0; i < theWPChoice->menubutton()->size(); i++ ) {
          const Fl_Menu_Item &item = theWPChoice->menubutton()->menu()[i];
          if(!selected.compare(item.label())){  // if they are equal
             theWPChoice->menubutton()->remove(i);
-            // wpObjs->remove(selected);
             std::cout << "removed " << selected << std::endl;
-            anInstance->printWaypoints();
             break;
          }
       }
@@ -100,7 +94,6 @@ class Client : public WaypointGUI {
       }else{
          theWPChoice->value("");
       }
-      
       sc.remove(selected);
   }
 
@@ -239,10 +232,10 @@ class Client : public WaypointGUI {
   //   std::cout << "Done initializing from waypoints.json" << std::endl;
   // }
 
-  // static void ClickedExportFile(Fl_Widget *w, void *userdata) {
-  //   wpObjs->toJsonFile("waypoints_out.json");
-  //   std::cout << "Exported to file: waypoints.json" << std::endl;
-  // }
+  static void ClickedExportFile(Fl_Widget *w, void *userdata) {
+    if(sc.saveToJsonFile("waypoints_out.json"))
+      std::cout << "Exported to file: waypoints.json" << std::endl;
+  }
 
   // static void getDistanceAndBearing(Fl_Widget *w, void *userdata) {
   //   Client* anInstance = (Client*)userdata;
@@ -296,7 +289,7 @@ public:
     // frWps->callback(SelectedFromWP, (void*)this);
     // toWps->callback(SelectedToWP, (void*)this);
     getLatLonButt->callback(ClickedImportFile, (void*)this);
-    // exportJson->callback(ClickedExportFile, (void*)this);
+    exportJson->callback(ClickedExportFile, (void*)this);
     // distBearButt->callback(getDistanceAndBearing, (void*)this);
     callback(ClickedX);
   }
