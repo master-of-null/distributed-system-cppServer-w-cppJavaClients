@@ -306,7 +306,7 @@ int main(int argc, char*argv[]) {
 
 
 
-  Client cm("C++ Waypoint Browser");
+  ::Client cm("C++ Waypoint Browser");
   return (Fl::run());
 }
 
