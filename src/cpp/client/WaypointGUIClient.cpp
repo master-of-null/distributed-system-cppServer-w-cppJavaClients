@@ -163,32 +163,32 @@ class Client : public WaypointGUI {
   //       "\",\"lon\":\""+lonNum+"\"}");
   // }
   
-  // static void SelectedFromWP(Fl_Widget * w, void * userdata) { // done
-  //     Client* anInstance = (Client*)userdata;
-  //     Fl_Input_Choice * frWps = anInstance->frWps;
-  //     Fl_Input * theLat = anInstance->latIn;
-  //     Fl_Input * theLon = anInstance->lonIn;
-  //     Fl_Input * theEle = anInstance->eleIn;
-  //     Fl_Input * theName = anInstance->nameIn;
-  //     Fl_Multiline_Input *theAddr = anInstance->addrIn;
+  static void SelectedFromWP(Fl_Widget * w, void * userdata) { // done
+      Client* anInstance = (Client*)userdata;
+      Fl_Input_Choice * frWps = anInstance->frWps;
+      Fl_Input * theLat = anInstance->latIn;
+      Fl_Input * theLon = anInstance->lonIn;
+      Fl_Input * theEle = anInstance->eleIn;
+      Fl_Input * theName = anInstance->nameIn;
+      Fl_Multiline_Input *theAddr = anInstance->addrIn;
       
-  //     std::string selected(frWps->value());
-  //     std::cout << "You selected from waypoint "
-  //               << selected
-  //               << std::endl;
-  //     Waypoint wp = wpObjs->get(selected);
+      std::string selected(frWps->value());
+      std::cout << "You selected from waypoint "
+                << selected
+                << std::endl;
+      Json::Value wp = sc.get(selected);
       
-  //     theName->value(wp.name.c_str());
-  //     theAddr->value(wp.address.c_str());
+      theName->value(wp["name"].asString().c_str());
+      theAddr->value(wp["address"].asString().c_str());
       
-  //     char latFormat[10], lonFormat[10], eleFormat[10];
-  //     sprintf(latFormat,"%4.4f",wp.lat);
-  //     sprintf(lonFormat,"%4.4f",wp.lon);
-  //     sprintf(eleFormat,"%4.4f",wp.ele);
-  //     theLat->value(latFormat);
-  //     theLon->value(lonFormat);
-  //     theEle->value(eleFormat);     
-  //  }
+      char latFormat[10], lonFormat[10], eleFormat[10];
+      sprintf(latFormat,"%4.4f",wp["lat"].asDouble());
+      sprintf(lonFormat,"%4.4f",wp["lon"].asDouble());
+      sprintf(eleFormat,"%4.4f",wp["ele"].asDouble());
+      theLat->value(latFormat);
+      theLon->value(lonFormat);
+      theEle->value(eleFormat);     
+   }
 
    static void SelectedToWP(Fl_Widget * w, void * userdata) {
       Client* anInstance = (Client*)userdata;
