@@ -89,7 +89,7 @@ class Client : public WaypointGUI {
          const Fl_Menu_Item &item = theWPChoice->menubutton()->menu()[i];
          if(!selected.compare(item.label())){  // if they are equal
             theWPChoice->menubutton()->remove(i);
-            wpObjs->remove(selected);
+            // wpObjs->remove(selected);
             std::cout << "removed " << selected << std::endl;
             anInstance->printWaypoints();
             break;
@@ -227,13 +227,7 @@ class Client : public WaypointGUI {
 
 
    static void printWaypoints() {
-    Json::Value names = wpObjs->getNames();
-    // for(string n : names) {
-    //   Json::Value wp = wpObjs->get(n);
-    //   std::cout << "Name: " << n << "Address: " << wp["address"] << "Ele: "
-    //   << wp["ele"] << "Lat: " << wp["lat"] << "Lon: " << wp["lon"] << std::endl;
-      
-    // }
+    Json::Value names = sc.getNames();
     std::cout << names << std::endl;
    }
 
