@@ -177,7 +177,6 @@ class Client : public WaypointGUI {
                 << selected
                 << std::endl;
       Json::Value wp = sc.get(selected);
-      std::cout << selected << endl;
       
       theName->value(wp["name"].asString().c_str());
       theAddr->value(wp["address"].asString().c_str());
@@ -238,29 +237,34 @@ class Client : public WaypointGUI {
       std::cout << "Exported to file: waypoints.json" << std::endl;
   }
 
-  // static void getDistanceAndBearing(Fl_Widget *w, void *userdata) {
-  //   Client* anInstance = (Client*)userdata;
-  //   Fl_Input_Choice * frWps = anInstance->frWps;
-  //   Fl_Input_Choice * toWps = anInstance->toWps;
-  //   Fl_Input * distBear = anInstance->distBearIn;
+  static void getDistanceAndBearing(Fl_Widget *w, void *userdata) {
+    Client* anInstance = (Client*)userdata;
+    Fl_Input_Choice * frWps = anInstance->frWps;
+    Fl_Input_Choice * toWps = anInstance->toWps;
+    Fl_Input * distBear = anInstance->distBearIn;
+    double fromLat, fromLon, toLat, toLon;
+    Json::Value frWp = sc.get(frWps->value());
+    Json::Value toWp = sc.get(toWps->value());
 
-  //   Waypoint frWp = wpObjs->get(frWps->value());
-  //   Waypoint toWp = wpObjs->get(toWps->value());
+    fromLat = frWp["lat"].asDouble()
+    fromLon = frWp["lon"].asDouble()
+    toLat = toWp["lat"].asDouble()
+    toLon = toWp["lon"].asDouble()
 
-  //   double distance = wpObjs->distanceEarth(frWp.lat, frWp.lon, toWp.lat, toWp.lon);
-  //   char distFormat[10];
-  //   sprintf(distFormat,"%4.2f",distance);
-  //   string dist(distFormat);
-  //   double degree = wpObjs->bearing(frWp.lat, frWp.lon, toWp.lat, toWp.lon);
-  //   char degFormat[10];
-  //   sprintf(degFormat, "%4.2f", degree);
-  //   string deg(degFormat);
+    double distance = sc.distanceEarth(fromLat, fromLon, toLat, toLon);
+    char distFormat[10];
+    sprintf(distFormat,"%4.2f",distance);
+    string dist(distFormat);
+    double degree = sc.bearing(fromLat, fromLon, toLat, toLon);
+    char degFormat[10];
+    sprintf(degFormat, "%4.2f", degree);
+    string deg(degFormat);
 
-  //   string whole = dist + "km at " + deg + " degrees";
+    string whole = dist + "km at " + deg + " degrees";
     
-  //   distBear->value(whole.c_str());
+    distBear->value(whole.c_str());
     
-  // }
+  }
 
   static void resetNames(void * userdata) {
     Json::Value names = sc.getNames();
@@ -291,7 +295,7 @@ public:
     toWps->callback(SelectedToWP, (void*)this);
     getLatLonButt->callback(ClickedImportFile, (void*)this);
     exportJson->callback(ClickedExportFile, (void*)this);
-    // distBearButt->callback(getDistanceAndBearing, (void*)this);
+    distBearButt->callback(getDistanceAndBearing, (void*)this);
     callback(ClickedX);
   }
 };
