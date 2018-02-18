@@ -48,8 +48,8 @@ public:
    virtual bool remove(const std::string& mediaName);
    virtual Json::Value get(const std::string& mediaName);
    virtual Json::Value getNames();
-   virtual float distanceEarth(float fromLatDeg, float fromLonDeg, float toLatDeg, float toLonDeg);
-   virtual float bearing(float fromLatDeg, float fromLonDeg, float toLatDeg, float toLonDeg);
+   virtual double distanceEarth(double fromLatDeg, double fromLonDeg, double toLatDeg, double toLonDeg);
+   virtual double bearing(double fromLatDeg, double fromLonDeg, double toLatDeg, double toLonDeg);
    
 private:
    WaypointLibrary * library;
@@ -109,11 +109,11 @@ Json::Value WaypointServer::getNames(){
    return library->getNames();
 }
 
-float distanceEarth(float fromLatDeg, float fromLonDeg, float toLatDeg, float toLonDeg){
+double distanceEarth(double fromLatDeg, double fromLonDeg, double toLatDeg, double toLonDeg){
    return library->distanceEarth(fromLatDeg, fromLonDeg, toLatDeg, toLonDeg);
 }
 
-float bearing(float fromLatDeg, float fromLonDeg, float toLatDeg, float toLonDeg){
+double bearing(double fromLatDeg, double fromLonDeg, double toLatDeg, double toLonDeg){
    return library->bearing(fromLatDeg, fromLonDeg, toLatDeg, toLonDeg);
 }
 

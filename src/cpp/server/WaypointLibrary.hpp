@@ -52,6 +52,6 @@ public:
    bool remove(string studentName);
    Json::Value get(string studentName); //returns a student's json
    Json::Value getNames(); //returns a json array of strings
-   float distanceEarth(float fromLatDeg, float fromLonDeg, float toLatDeg, float toLonDeg);
-   float bearing(float fromLatDeg, float fromLonDeg, float toLatDeg, float toLonDeg);
+   double distanceEarth(double fromLatDeg, double fromLonDeg, double toLatDeg, double toLonDeg);
+   double bearing(double fromLatDeg, double fromLonDeg, double toLatDeg, double toLonDeg);
 };
