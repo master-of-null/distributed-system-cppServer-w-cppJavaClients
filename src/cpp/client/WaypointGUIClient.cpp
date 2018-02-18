@@ -204,17 +204,17 @@ class Client : public WaypointGUI {
                 << selected
                 << std::endl;
       Json::Value wp = sc.get(selected);
-      std::cout << "yellowww " << wp << endl << wp["name"] << endl;
-      // theName->value(wp.name.c_str());
-      // theAddr->value(wp.address.c_str());
+
+      theName->value(wp["name"].c_str());
+      theAddr->value(wp["address"].c_str());
       
-      // char latFormat[10], lonFormat[10], eleFormat[10];
-      // sprintf(latFormat,"%4.4f",wp.lat);
-      // sprintf(lonFormat,"%4.4f",wp.lon);
-      // sprintf(eleFormat,"%4.4f",wp.ele);
-      // theLat->value(latFormat);
-      // theLon->value(lonFormat);
-      // theEle->value(eleFormat);
+      char latFormat[10], lonFormat[10], eleFormat[10];
+      sprintf(latFormat,"%4.4f",wp["lat"]);
+      sprintf(lonFormat,"%4.4f",wp["lon"]);
+      sprintf(eleFormat,"%4.4f",wp["ele"]);
+      theLat->value(latFormat);
+      theLon->value(lonFormat);
+      theEle->value(eleFormat);
    }
 
 
