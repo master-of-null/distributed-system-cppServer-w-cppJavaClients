@@ -205,8 +205,8 @@ class Client : public WaypointGUI {
                 << std::endl;
       Json::Value wp = sc.get(selected);
 
-      theName->value(wp["name"].c_str());
-      theAddr->value(wp["address"].c_str());
+      theName->value(wp["name"].asString().c_str());
+      theAddr->value(wp["address"].asString().c_str());
       
       char latFormat[10], lonFormat[10], eleFormat[10];
       sprintf(latFormat,"%4.4f",wp["lat"]);
