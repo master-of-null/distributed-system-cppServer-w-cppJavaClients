@@ -281,6 +281,32 @@ class Client : public WaypointGUI {
     
   // }
 
+  static void resetNames(void * userdata) {
+    Json::Value names = sc.getNames();
+    Client* anInstance = (Client*)userdata;
+    Fl_Input_Choice * fromWPChoice = anInstance->frWps;
+    Fl_Input_Choice * toWPChoice = anInstance->toWps;
+
+    Json::Value::Members mbr = names.getMemberNames(); // get JSON values
+    for(vector<string>::const_iterator i = mbr.begin();
+      i != mbr.end(); i++) { // for each JSON Value do:
+      
+      toWPChoice->add(value[*i].asString());
+      fromWPChoice->add(value[*i].asString());
+      // Json::Value jsonWaypoint = value[*i];
+      // string cityStr = "city";
+
+      // string name = jsonWaypoint["name"].asString();
+      // string address = jsonWaypoint["address"].asString();
+      // float ele = jsonWaypoint["ele"].asFloat();
+      // float lat = jsonWaypoint["lat"].asFloat();
+      // float lon = jsonWaypoint["lon"].asFloat();
+
+      // Waypoint *wp = new Waypoint(name, address, ele, lat, lon);
+      // // wp->print();
+      // waypoints[*i] = *wp;
+    }
+  }
 
 
 public:
