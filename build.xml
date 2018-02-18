@@ -129,7 +129,7 @@
             <property name="client.lib.path" value="/usr/local/lib"/>
             <property name="client.lib.list" value="jsoncpp,jsonrpccpp-client,jsonrpccpp-common,microhttpd,stdc++"/>
             <property name="server.lib.path" value="/usr/local/lib"/>
-            <property name="server.lib.list" value="jsoncpp,jsonrpccpp-server,jsonrpccpp-common,m,microhttpd,stdc++"/>
+            <property name="server.lib.list" value="jsoncpp,jsonrpccpp-server,jsonrpccpp-common,m,fltk,microhttpd,stdc++"/>
          </then>
       </elseif>
       <else>
