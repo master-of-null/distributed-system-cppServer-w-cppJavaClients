@@ -133,9 +133,9 @@ Json::Value WaypointLibrary::getNames(){
   return ret;
 }
 
-double WaypointLibrary::distanceEarth(float fromLatDeg, float fromLonDeg, float toLatDeg, float toLonDeg) {
-  double earthRadiusKm = 6371.0;
-  double toLatRad, toLonRad, fromLatRad, fromLonRad, u, v;
+float WaypointLibrary::distanceEarth(float fromLatDeg, float fromLonDeg, float toLatDeg, float toLonDeg) {
+  float earthRadiusKm = 6371.0;
+  float toLatRad, toLonRad, fromLatRad, fromLonRad, u, v;
   
   fromLatRad = fromLatDeg * PI / 180;
   fromLonRad = fromLonDeg * PI / 180;
@@ -148,8 +148,8 @@ double WaypointLibrary::distanceEarth(float fromLatDeg, float fromLonDeg, float 
   return 2.0 * earthRadiusKm * asin(sqrt(u * u + cos(fromLatRad) * cos(toLatRad) * v * v));
 }
 
-double WaypointLibrary::bearing(float fromLatDeg, float fromLonDeg, float toLatDeg, float toLonDeg) {
-    double toLatRad, toLonRad, fromLatRad, fromLonRad, y, x;
+float WaypointLibrary::bearing(float fromLatDeg, float fromLonDeg, float toLatDeg, float toLonDeg) {
+    float toLatRad, toLonRad, fromLatRad, fromLonRad, y, x;
   
   fromLatRad = fromLatDeg * PI / 180;
   fromLonRad = fromLonDeg * PI / 180;
@@ -159,7 +159,7 @@ double WaypointLibrary::bearing(float fromLatDeg, float fromLonDeg, float toLatD
   y = sin (toLonRad - fromLonRad) * cos (toLatRad);
   x = cos (fromLatRad) * sin (toLatRad) - sin (fromLatRad) * cos (toLatRad) * cos ( toLonRad - fromLonRad );
 
-  double bearing = atan2 (y,x);
+  float bearing = atan2 (y,x);
   return bearing * 180 / PI;
 }
 

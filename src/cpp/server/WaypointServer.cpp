@@ -48,8 +48,8 @@ public:
    virtual bool remove(const std::string& mediaName);
    virtual Json::Value get(const std::string& mediaName);
    virtual Json::Value getNames();
-   virtual double distanceEarth(float fromLatDeg, float fromLonDeg, float toLatDeg, float toLonDeg);
-   virtual double bearing(float fromLatDeg, float fromLonDeg, float toLatDeg, float toLonDeg);
+   virtual float distanceEarth(float fromLatDeg, float fromLonDeg, float toLatDeg, float toLonDeg);
+   virtual float bearing(float fromLatDeg, float fromLonDeg, float toLatDeg, float toLonDeg);
    
 private:
    WaypointLibrary * library;
@@ -109,14 +109,12 @@ Json::Value WaypointServer::getNames(){
    return library->getNames();
 }
 
-double distanceEarth(float fromLatDeg, float fromLonDeg, float toLatDeg, float toLonDeg){
-   double dist = library->distanceEarth(fromLatDeg, fromLonDeg, toLatDeg, toLonDeg);
-   return dist;
+float distanceEarth(float fromLatDeg, float fromLonDeg, float toLatDeg, float toLonDeg){
+   return library->distanceEarth(fromLatDeg, fromLonDeg, toLatDeg, toLonDeg);
 }
 
-double bearing(float fromLatDeg, float fromLonDeg, float toLatDeg, float toLonDeg){
-   double bear = library->bearing(fromLatDeg, fromLonDeg, toLatDeg, toLonDeg);
-   return bear;
+float bearing(float fromLatDeg, float fromLonDeg, float toLatDeg, float toLonDeg){
+   return library->bearing(fromLatDeg, fromLonDeg, toLatDeg, toLonDeg);
 }
 
 void exiting(){
