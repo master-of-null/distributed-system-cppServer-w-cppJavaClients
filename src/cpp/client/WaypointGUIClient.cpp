@@ -52,7 +52,7 @@
 #include <FL/Fl_Multiline_Input.H>
 
 
-using namespace jsonrpc;
+// using namespace jsonrpc;
 
 
 WaypointLibrary *wpObjs = new WaypointLibrary();
@@ -60,7 +60,7 @@ string host = "http://127.0.0.1:8080";
 // if(argc>1){
 //    host = string(argv[1]);
 // }
-HttpClient httpclient(host);
+jsonrpc::HttpClient httpclient(host);
 waypointlibrarystub sc(httpclient);
 
 class Client : public WaypointGUI {
@@ -306,7 +306,7 @@ int main(int argc, char*argv[]) {
 
 
 
-  ::Client cm("C++ Waypoint Browser");
+  Client cm("C++ Waypoint Browser");
   return (Fl::run());
 }
 
