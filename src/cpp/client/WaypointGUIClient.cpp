@@ -287,7 +287,7 @@ public:
     removeWPButt->callback(ClickedRemoveWP, (void*)this);
     // addWPButt->callback(ClickedAddWP, (void*)this);
     // modWPButt->callback(ClickedModifyWP, (void*)this);
-    // frWps->callback(SelectedFromWP, (void*)this);
+    frWps->callback(SelectedFromWP, (void*)this);
     toWps->callback(SelectedToWP, (void*)this);
     getLatLonButt->callback(ClickedImportFile, (void*)this);
     exportJson->callback(ClickedExportFile, (void*)this);
