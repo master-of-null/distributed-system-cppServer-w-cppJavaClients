@@ -123,9 +123,9 @@ static void ClickedRemoveWP(Fl_Widget * w, void * userdata) {
       
       std::string jsonStr = "{\"name\":\""+name+
         "\",\"address\":\""+addr+"\""+
-        "\",\"ele\":\""+eleNum+"\""+
-        "\",\"lat\":\""+latNum+"\""+
-        "\",\"lon\":\""+lonNum+"\"}";
+        "\",\"ele\":\""+eleFormat+"\""+
+        "\",\"lat\":\""+latFormat+"\""+
+        "\",\"lon\":\""+lonFormat+"\"}";
 
       Json::Value root;
       Json::Reader reader;
