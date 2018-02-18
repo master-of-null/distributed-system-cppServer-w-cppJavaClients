@@ -53,7 +53,6 @@
 
 
 using namespace jsonrpc;
-using namespace std;
 
 
 WaypointLibrary *wpObjs = new WaypointLibrary();
