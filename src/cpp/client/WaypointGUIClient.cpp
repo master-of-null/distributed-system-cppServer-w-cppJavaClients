@@ -290,9 +290,9 @@ class Client : public WaypointGUI {
     Json::Value::Members mbr = names.getMemberNames(); // get JSON values
     for(vector<string>::const_iterator i = mbr.begin();
       i != mbr.end(); i++) { // for each JSON Value do:
-      
-      toWPChoice->add(names[*i].asString());
-      fromWPChoice->add(names[*i].asString());
+      std::cout << "hey there " << names[*i].asString() << endl;
+      // toWPChoice->add(names[*i].asString());
+      // fromWPChoice->add(names[*i].asString());
       // Json::Value jsonWaypoint = value[*i];
       // string cityStr = "city";
 
