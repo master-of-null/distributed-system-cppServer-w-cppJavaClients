@@ -210,13 +210,13 @@ class Client : public WaypointGUI {
       
       char latFormat[10], lonFormat[10], eleFormat[10];
       std::cout << wp << endl;
-      sprintf(latFormat,"%4.4f",wp["lat"]);
-      sprintf(lonFormat,"%4.4f",wp["lon"]);
-      sprintf(eleFormat,"%4.4f",wp["ele"]);
+      sprintf(latFormat,"%4.4f",wp["lat"].asInt());
+      sprintf(lonFormat,"%4.4f",wp["lon"].asInt());
+      sprintf(eleFormat,"%4.4f",wp["ele"].asInt());
       std::cout << latFormat << endl;
-      theLat->value(wp["lat"].asInt());
-      theLon->value(wp["lon"].asInt());
-      theEle->value(wp["ele"].asInt());
+      theLat->value(wp["lat"]);
+      theLon->value(wp["lon"]);
+      theEle->value(wp["ele"]);
    }
 
 
