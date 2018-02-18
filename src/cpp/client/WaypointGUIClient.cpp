@@ -114,9 +114,13 @@ static void ClickedRemoveWP(Fl_Widget * w, void * userdata) {
       double lonNum = atof(lon.c_str());
       double eleNum = atof(ele.c_str());
 
-      char latFormat[10];
+      char latFormat[10], eleFormat[10], lonFormat[10];
       sprintf(latFormat,"%4.4f",latNum);  //format the double into a C string
       std::string latCppStr(latFormat);   //convert formatted C str to C++ str
+      sprintf(lonFormat,"%4.4f",lonNum);  //format the double into a C string
+      std::string lonCppStr(lonFormat);   //convert formatted C str to C++ str
+      sprintf(eleFormat,"%4.4f",eleNum);  //format the double into a C string
+      std::string eleCppStr(eleFormat);   //convert formatted C str to C++ str
 
       std::string name(theName->value());
       string addr(theAddr->value());
