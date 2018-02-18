@@ -138,7 +138,7 @@ static void ClickedRemoveWP(Fl_Widget * w, void * userdata) {
       sc.add(root);
 
       fromWPChoice->add(name.c_str());
-      toWPChoice->add(newWP.name.c_str());
+      toWPChoice->add(name.c_str());
       fromWPChoice->value(name.c_str());
    }
 
