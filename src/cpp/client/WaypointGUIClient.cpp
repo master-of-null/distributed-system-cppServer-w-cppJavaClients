@@ -214,9 +214,9 @@ class Client : public WaypointGUI {
       sprintf(lonFormat,"%4.4f",wp["lon"].asInt());
       sprintf(eleFormat,"%4.4f",wp["ele"].asInt());
       std::cout << latFormat << endl;
-      theLat->value(wp["lat"]);
-      theLon->value(wp["lon"]);
-      theEle->value(wp["ele"]);
+      theLat->value(latFormat);
+      theLon->value(lonFormat);
+      theEle->value(eleFormat);
    }
 
 
