@@ -237,18 +237,11 @@ class Client : public WaypointGUI {
     std::cout << names << std::endl;
    }
 
-  // static void ClickedImportFile(Fl_Widget *w, void * userdata) {
-  //   Client* anInstance = (Client*)userdata;
-  //   Fl_Input_Choice * frWps = anInstance->frWps;
-  //   Fl_Input_Choice * toWps = anInstance->toWps;
-  //   std::cout << "Starting import from waypoints.json file" << std::endl;
-  //   wpObjs->initWaypointsFromJsonFile("waypoints.json");
-  //   vector<string> names = wpObjs->getNames();
-  //   for(string n : names) {
-  //     frWps->add(n.c_str());
-  //     toWps->add(n.c_str());
+  static void ClickedImportFile(Fl_Widget *w, void * userdata) {
+    resetNames((void* userdata));
+    std::cout << "Starting import from waypoints.json file from Server" << std::endl;
       
-  //   }
+    }
   //   std::cout << "Done initializing from waypoints.json" << std::endl;
   // }
 
