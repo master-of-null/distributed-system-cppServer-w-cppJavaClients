@@ -204,7 +204,7 @@ class Client : public WaypointGUI {
                 << selected
                 << std::endl;
       Json::Value wp = sc.get(selected);
-      std::cout << "yellowww " << wp << endl;
+      std::cout << "yellowww " << wp << endl << wp.get("name");
       // theName->value(wp.name.c_str());
       // theAddr->value(wp.address.c_str());
       
