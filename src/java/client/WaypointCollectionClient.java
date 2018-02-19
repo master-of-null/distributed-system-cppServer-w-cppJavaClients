@@ -46,7 +46,7 @@ public class WaypointCollectionClient extends WaypointGUI implements
 
   private static final boolean debugOn = true;
   private JSONObject hashi;
-  private WaypointCollectionHttpProxy wc;
+  protected WaypointCollectionHttpProxy wc;
   
 
    public WaypointCollectionClient(String base, String url) {
