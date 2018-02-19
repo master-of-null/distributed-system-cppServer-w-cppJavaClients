@@ -132,13 +132,13 @@ public class WaypointCollectionClient extends WaypointGUI implements
       FileInputStream in = new FileInputStream(jsonFileName);
       JSONObject obj = new JSONObject(new JSONTokener(in));
       boolean successful = wc.resetFromJsonFile();
-      // if(successful)
-      //   System.out.println("names are:");
-      // String [] names = wc.getNames();
-      // for(int i = 0; i < names.length; i++) {
-      //   frWps.addItem(names[i]);
-      //   toWps.addItem(names[i]);
-      // }
+      if(successful)
+        System.out.println("names are:");
+      String [] names = wc.getNames();
+      for(int i = 0; i < names.length; i++) {
+        frWps.addItem(names[i]);
+        toWps.addItem(names[i]);
+      }
       return obj;
     }
     catch(FileNotFoundException ex)
