@@ -54,10 +54,10 @@
 
 // using namespace jsonrpc;
 
+  waypointlibrarystub wc;
 
 class Client : public WaypointGUI {
 
-  static waypointlibrarystub wc;
 
    /** ClickedX is one of the callbacks for GUI controls.
     * Callbacks need to be static functions. But, static functions
