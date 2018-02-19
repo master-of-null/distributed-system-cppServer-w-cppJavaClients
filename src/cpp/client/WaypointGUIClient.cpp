@@ -64,7 +64,7 @@ class Client : public WaypointGUI {
     * function. The callback then accesses whatever GUI control object
     * that it needs for implementing its functionality.
     */
-  string host;
+  static string host;
 
 
  static void ClickedX(Fl_Widget * w, void * userdata) {
