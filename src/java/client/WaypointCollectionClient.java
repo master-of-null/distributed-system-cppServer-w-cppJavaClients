@@ -116,9 +116,9 @@ public class WaypointCollectionClient extends WaypointGUI implements
     debug("you clicked Export Json Library");
     exportFile();
    }else if(e.getActionCommand().equals("Distance")) {
-    // debug("you clicked Distance and Bearing");
-    // distBearIn.setText(String.valueOf(haversineDistance()) + "km, "
-    //    + String.valueOf(haversineBearing() + " degrees"));
+    debug("you clicked Distance and Bearing");
+    distBearIn.setText(String.valueOf(haversineDistance()) + "km, "
+       + String.valueOf(haversineBearing() + " degrees"));
    }
   }
 
@@ -197,7 +197,58 @@ public class WaypointCollectionClient extends WaypointGUI implements
     }
   }
 
-  
+  private double haversineDistance() {
+    double latFrom, lngFrom, latTo, lngTo, latFromRad,latToRad,
+    deltaLat, deltaLng, a, c;
+    double d = 0;
+    String from = frWps.getSelectedItem().toString();
+    String to = toWps.getSelectedItem().toString();
+    if(!to.equals("to waypoint") && !from.equals("from waypoint")){
+      latFrom = hashi.getJSONObject(from).getDouble("lat");
+      lngFrom = hashi.getJSONObject(from).getDouble("lon");
+      latTo = hashi.getJSONObject(to).getDouble("lat");
+      lngTo = hashi.getJSONObject(to).getDouble("lon");
+
+      latFromRad = Math.toRadians(latFrom);
+      latToRad = Math.toRadians(latTo);
+      deltaLat = Math.toRadians(latTo - latFrom);
+      deltaLng = Math.toRadians(lngTo - lngFrom);
+      a = Math.pow(Math.sin(deltaLat/2), 2) +
+      Math.cos(latFromRad) * Math.cos(latToRad) *
+      Math.pow(Math.sin(deltaLng/2), 2);
+      c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+      d = 6371 * c;
+      d = Math.round(d * 100) / 100;
+    }
+    return d;
+  }
+
+  private double haversineBearing() {
+    double latFrom, lngFrom, latTo, lngTo, latFromRad, latToRad,
+    deltaLngRad, y, x;
+    double bearing = 0;
+    String from = frWps.getSelectedItem().toString();
+    String to = toWps.getSelectedItem().toString();
+    if(!to.equals("to waypoint") && !from.equals("from waypoint")){
+      latTo = hashi.getJSONObject(to).getDouble("lat");
+      lngTo = hashi.getJSONObject(to).getDouble("lon");
+      latFrom = hashi.getJSONObject(from).getDouble("lat");
+      lngFrom = hashi.getJSONObject(from).getDouble("lon");
+
+      deltaLngRad = Math.toRadians(lngTo - lngFrom);
+      latFromRad = Math.toRadians(latFrom);
+      latToRad = Math.toRadians(latTo);
+
+
+
+      y = Math.sin(deltaLngRad) * Math.cos(latToRad);
+      x = Math.cos(latFromRad) * Math.sin(latToRad) -
+      Math.sin(latFromRad) * Math.cos(latToRad) * Math.cos(deltaLngRad);
+      bearing = Math.toDegrees(Math.atan2(y, x));
+      bearing = Math.round(bearing * 100) / 100;
+    }
+    return bearing;
+  }
 
 
 

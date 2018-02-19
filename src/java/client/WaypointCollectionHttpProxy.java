@@ -171,38 +171,6 @@ public class WaypointCollectionHttpProxy {
       return ret;
    }
 
-   public double distanceEarth(double fromLat, double fromLon, double toLat, double toLon){
-      double fromLatRad,toLatRad, deltaLat, deltaLng, a, c, d;
-
-      fromLatRad = Math.toRadians(fromLat);
-      toLatRad = Math.toRadians(toLat);
-      deltaLat = Math.toRadians(toLat - fromLat);
-      deltaLng = Math.toRadians(toLon - fromLon);
-      a = Math.pow(Math.sin(deltaLat/2), 2) +
-      Math.cos(fromLatRad) * Math.cos(toLatRad) *
-      Math.pow(Math.sin(deltaLng/2), 2);
-      c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-      d = 6371 * c;
-      d = Math.round(d * 100) / 100;
-      return d;
-   }
-
-   public double bearing(double fromLat, double fromLon, double toLat, double toLon) {
-      double fromLatRad, toLatRad, deltaLngRad, y, x, bearing;
-
-      deltaLngRad = Math.toRadians(toLon - fromLon);
-      fromLatRad = Math.toRadians(fromLat);
-      toLatRad = Math.toRadians(toLat);
-
-      y = Math.sin(deltaLngRad) * Math.cos(toLatRad);
-      x = Math.cos(fromLatRad) * Math.sin(toLatRad) -
-      Math.sin(fromLatRad) * Math.cos(toLatRad) * Math.cos(deltaLngRad);
-      bearing = Math.toDegrees(Math.atan2(y, x));
-      bearing = Math.round(bearing * 100) / 100;
-   
-      return bearing;
-   }
-
    public void setHeader(String key, String value) {
       this.headers.put(key, value);
    }
