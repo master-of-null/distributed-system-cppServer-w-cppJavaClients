@@ -286,6 +286,7 @@ static void ClickedRemoveWP(Fl_Widget * w, void * userdata) {
 
 
 public:
+  waypointlibrarystub wc;
   Client(const char * name = 0, string host = "http://127.0.0.1:8080") : WaypointGUI(name) {
     // connect to server
     jsonrpc::HttpClient httpclient(host);
