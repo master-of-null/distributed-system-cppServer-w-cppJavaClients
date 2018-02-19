@@ -284,7 +284,7 @@ static void ClickedRemoveWP(Fl_Widget * w, void * userdata) {
     }
   }
 
-  static void conneect(string host) {
+  static void connectToServer(string host) {
     jsonrpc::HttpClient httpclient(host);
     waypointlibrarystub wc(httpclient);
     std::cout << "Connecting to host " << host << std::endl;
@@ -295,7 +295,7 @@ public:
   
   Client(const char * name = 0, string host = "http://127.0.0.1:8080") : WaypointGUI(name) {
     // connect to server
-    connect(host);
+    connectToServer(host);
     resetNames((void*)this);
 
     removeWPButt->callback(ClickedRemoveWP, (void*)this, wc);
