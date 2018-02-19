@@ -35,7 +35,7 @@
       <echo message="base directory is: ${basedir} and ostype is ${ostype}"/>
       <echo message="execute cpp server with: ./bin/waypointRPCServer ${port.num}"/>
       <echo message="execute cpp client with: ./bin/waypointRPCClient http://${host.name}:${port.num}"/>
-      <echo message="invoke java http client with: java -cp classes:lib/json.jar sample.student.client.StudentCollectionClient ${host.name} ${port.num}"/>
+      <echo message="invoke java http client with: java -cp classes:lib/json.jar sample.waypoint.client.WaypointCollectionClient ${host.name} ${port.num}"/>
       
    </target>
 
@@ -193,7 +193,7 @@
    <target name="build.java.client" depends="prepare"
           description="Compile Java client sources">
      <!-- Compile Java classes as necessary -->
-     <echo message="execute: java -cp classes:lib/json.jar sample.student.client.StudentCollectionClient localhost 8080"/>
+     <echo message="execute: java -cp classes:lib/json.jar sample.waypoint.client.WaypointCollectionClient localhost 8080"/>
      <javac srcdir="${src.dir}/java/client"
             destdir="${classes.dir}"
             includeantruntime="false">

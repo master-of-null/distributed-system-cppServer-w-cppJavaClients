@@ -1,4 +1,4 @@
-package sample.student.client;
+package sample.waypoint.client;
 
 import java.io.*;
 import java.util.*;
@@ -34,7 +34,7 @@ import org.json.JSONArray;
  * @version May 2016
  * @license See above
  */
-public class StudentCollectionClient extends Object {
+public class WaypointCollectionClient extends Object {
 
    static final boolean debugOn = false;
 
@@ -55,10 +55,10 @@ public class StudentCollectionClient extends Object {
          }
          String url = "http://"+host+":"+port+"/";
          System.out.println("Opening connection to: "+url);
-         StudentCollectionHttpProxy sc = new StudentCollectionHttpProxy(new URL(url));
+         WaypointCollectionHttpProxy sc = new WaypointCollectionHttpProxy(new URL(url));
          BufferedReader stdin = new BufferedReader(
             new InputStreamReader(System.in));
-         System.out.println("Example entries:\nsave\nreset\nadd Any Student\nget Any Student\ngetNames\ngetById 7\nremove Any Student");
+         System.out.println("Example entries:\nsave\nreset\nadd Any Waypoint\nget Any Waypoint\ngetNames\ngetById 7\nremove Any Waypoint");
          System.out.print("Enter end or {save|reset|add|get|getById|getNames|remove} followed by args>");
          String inStr = stdin.readLine();
          StringTokenizer st = new StringTokenizer(inStr);
@@ -70,7 +70,7 @@ public class StudentCollectionClient extends Object {
                   name = name + st.nextToken();
                   if(st.hasMoreTokens()) name = name + " ";
                }
-               Student aStud = new Student(name,7,new String[]{"Ser423","Ser321"});
+               Waypoint aStud = new Waypoint(name,7,new String[]{"Ser423","Ser321"});
                boolean result = sc.add(aStud);
                System.out.println("Add "+aStud.name+" result "+result);
             }else if (opn.equalsIgnoreCase("get")) {
@@ -78,11 +78,11 @@ public class StudentCollectionClient extends Object {
                while(st.hasMoreTokens()){
                   name = name + " " + st.nextToken();
                }
-               Student result = sc.get(name);
+               Waypoint result = sc.get(name);
                System.out.println("Got "+result.toString());
             }else if (opn.equalsIgnoreCase("getNames")) {
                String[] result = sc.getNames();
-               System.out.println("The collection has entries for the following students: ");
+               System.out.println("The collection has entries for the following Waypoints: ");
                for (int i = 0; i < result.length; i++){
                   System.out.print(result[i]+", ");
                }

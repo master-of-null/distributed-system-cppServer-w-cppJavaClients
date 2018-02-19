@@ -1,4 +1,4 @@
-package sample.student.client;
+package sample.waypoint.client;
 
 import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
@@ -14,7 +14,7 @@ import java.util.Arrays;
 import org.json.JSONObject;
 import org.json.JSONArray;
 
-public class StudentCollectionHttpProxy {
+public class WaypointCollectionHttpProxy {
 
    static final boolean debugOn = false;
    private final Map<String, String> headers;
@@ -22,7 +22,7 @@ public class StudentCollectionHttpProxy {
    private String requestData;
    private static int callid =0;
 
-   public StudentCollectionHttpProxy(URL url) {
+   public WaypointCollectionHttpProxy(URL url) {
       this.url = url;
       this.headers = new HashMap<String, String>();
    }
@@ -77,34 +77,32 @@ public class StudentCollectionHttpProxy {
       return ret;
    }
 
-   /*
-    *add(Student aStudent)-->boolean
-    */
-   public boolean add(Student aStudent){
+
+   public boolean add(Waypoint aName){
       boolean ret = false;
       try{
          JSONObject jobj = this.buildCall("add");
          JSONArray params = new JSONArray();
-         params.put(aStudent.toJson());
+         params.put(aName.toJson());
          jobj.put("params",params);
          String request = jobj.toString();
          String response = this.call(request);
          debug("add returned: "+response);
       }catch(Exception ex){
-         System.out.println("exception in add "+aStudent.toJsonString()+" error: "+ex.getMessage());
+         System.out.println("exception in add "+aName.toJsonString()+" error: "+ex.getMessage());
       }
       return ret;
    }
 
    /*
-    *remove(String aStudentName)-->boolean
+    *remove(String aWaypointName)-->boolean
     */
-   public boolean remove(String aStudentName){
+   public boolean remove(String aName){
       boolean ret = false;
       try{
          JSONObject jobj = this.buildCall("remove");
          JSONArray params = new JSONArray();
-         params.put(aStudentName);
+         params.put(aName);
          jobj.put("params",params);
          String request = jobj.toString();
          String response = this.call(request);
@@ -114,20 +112,18 @@ public class StudentCollectionHttpProxy {
             ret = respObj.optBoolean("result");
          }
       }catch(Exception ex){
-         System.out.println("exception in remove "+aStudentName+" error: "+ex.getMessage());
+         System.out.println("exception in remove "+aName+" error: "+ex.getMessage());
       }
       return ret;
    }
 
-   /*
-    *get(String aStudentName)-->Student
-    */
-   public Student get(String aStudentName){
-      Student ret = new Student("unknown",999,new String[]{"Ser321"});
+
+   public Waypoint get(String aName){
+      Waypoint ret = new Waypoint("unknown",999,new String[]{"Ser321"});
       try{
          JSONObject jobj = this.buildCall("get");
          JSONArray params = new JSONArray();
-         params.put(aStudentName);
+         params.put(aName);
          jobj.put("params",params);
          String request = jobj.toString();
          String response = this.call(request);
@@ -135,17 +131,14 @@ public class StudentCollectionHttpProxy {
          JSONObject respObj = new JSONObject(response);
          if(!respObj.has("error")){
             JSONObject obj = respObj.optJSONObject("result");
-            ret = new Student(obj);
+            ret = new Waypoint(obj);
          }
       }catch(Exception ex){
-         System.out.println("exception in get "+aStudentName+" error: "+ex.getMessage());
+         System.out.println("exception in get "+aName+" error: "+ex.getMessage());
       }
       return ret;
    }
 
-   /*
-    *getNames()-->String[]
-    */
    public String[] getNames(){
       String[] ret = new String[]{};
       try{
@@ -174,27 +167,37 @@ public class StudentCollectionHttpProxy {
       return ret;
    }
 
-   /*
-    *getById(int id)-->String
-    */
-   public String getById(int id){
-      String ret = "unknown";
-      try{
-         JSONObject jobj = this.buildCall("getById");
-         JSONArray params = new JSONArray();
-         params.put(id);
-         jobj.put("params",params);
-         String request = jobj.toString();
-         String response = this.call(request);
-         debug("remove returned: "+response);
-         JSONObject respObj = new JSONObject(response);
-         if(!respObj.has("error")){
-            ret = respObj.optString("result");
-         }
-      }catch(Exception ex){
-         System.out.println("exception in getById "+id+", error: "+ex.getMessage());
-      }
-      return ret;
+   public double distanceEarth(double fromLat, double fromLon, double toLat, double toLon){
+      double fromLatRad,toLatRad, deltaLat, deltaLng, a, c, d;
+
+      fromLatRad = Math.toRadians(fromLat);
+      toLatRad = Math.toRadians(toLat);
+      deltaLat = Math.toRadians(toLat - fromLat);
+      deltaLng = Math.toRadians(toLon - fromLon);
+      a = Math.pow(Math.sin(deltaLat/2), 2) +
+      Math.cos(fromLatRad) * Math.cos(toLatRad) *
+      Math.pow(Math.sin(deltaLng/2), 2);
+      c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+      d = 6371 * c;
+      d = Math.round(d * 100) / 100;
+      return d;
+   }
+
+   public double bearing(double fromLat, double fromLon, double toLat, double toLon) {
+      double fromLat, fromLon, toLat, toLon, fromLatRad, toLatRad,
+      deltaLngRad, y, x, bearing;
+
+      deltaLngRad = Math.toRadians(toLon - fromLon);
+      fromLatRad = Math.toRadians(fromLat);
+      toLatRad = Math.toRadians(toLat);
+
+      y = Math.sin(deltaLngRad) * Math.cos(toLatRad);
+      x = Math.cos(fromLatRad) * Math.sin(toLatRad) -
+      Math.sin(fromLatRad) * Math.cos(toLatRad) * Math.cos(deltaLngRad);
+      bearing = Math.toDegrees(Math.atan2(y, x));
+      bearing = Math.round(bearing * 100) / 100;
+   
+      return bearing;
    }
 
    public void setHeader(String key, String value) {
