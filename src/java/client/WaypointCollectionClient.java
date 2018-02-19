@@ -179,6 +179,9 @@ public class WaypointCollectionClient extends WaypointGUI implements
     json.put("lat", lat);
     json.put("ele", ele);
     hashi.put(name, json);
+
+    Waypoint wp = new Waypoint(name, addr, ele, lat, lon);
+    wc.add(wp);
   }
 
   private void modifyWP(String name) {

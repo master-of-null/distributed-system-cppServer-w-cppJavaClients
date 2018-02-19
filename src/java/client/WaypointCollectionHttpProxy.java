@@ -88,7 +88,9 @@ public class WaypointCollectionHttpProxy {
          params.put(aName.toJson());
          jobj.put("params",params);
          String request = jobj.toString();
+         System.out.println("request " + request);
          String response = this.call(request);
+         System.out.println("response => " + response);
          debug("add returned: "+response);
       }catch(Exception ex){
          System.out.println("exception in add "+aName.toJsonString()+" error: "+ex.getMessage());
