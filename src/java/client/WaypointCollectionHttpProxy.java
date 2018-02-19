@@ -206,7 +206,6 @@ public class WaypointCollectionHttpProxy {
 
    public String call(String requestData) throws Exception {
       debug("in call, url: "+url.toString()+" requestData: "+requestData);
-      System.out.println("in call, url: "+url.toString()+" requestData: "+requestData);
       String respData = post(url, headers, requestData);
       System.out.println(respData);
       return respData;
