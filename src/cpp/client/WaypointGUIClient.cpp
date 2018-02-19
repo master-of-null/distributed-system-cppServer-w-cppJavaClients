@@ -72,7 +72,7 @@ class Client : public WaypointGUI {
   exit(1);
 }
 
-static void ClickedRemoveWP(Fl_Widget * w, void * userdata) {
+static void ClickedRemoveWP(Fl_Widget * w, void * userdata, waypointlibrarystub wc) {
   Client* anInstance = (Client*)userdata;
   Fl_Input_Choice * theWPChoice = anInstance->frWps;
   std::string selected(theWPChoice->value());
@@ -294,7 +294,7 @@ public:
     std::cout << "Connecting to host " << host << std::endl;
     resetNames((void*)this);
 
-    removeWPButt->callback(ClickedRemoveWP, (void*)this);
+    removeWPButt->callback(ClickedRemoveWP, (void*)this, wc);
     addWPButt->callback(ClickedAddWP, (void*)this);
     modWPButt->callback(ClickedModifyWP, (void*)this);
     frWps->callback(SelectedFromWP, (void*)this);
