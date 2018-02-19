@@ -127,7 +127,7 @@ public class WaypointCollectionClient extends WaypointGUI implements
       System.out.println("debug: "+message);
   }
    
-  private JSONObject importFile(String jsonFileName) {
+  public JSONObject importFile(String jsonFileName) {
     try {
       FileInputStream in = new FileInputStream(jsonFileName);
       JSONObject obj = new JSONObject(new JSONTokener(in));
