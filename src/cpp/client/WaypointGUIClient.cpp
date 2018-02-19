@@ -287,7 +287,7 @@ static void ClickedRemoveWP(Fl_Widget * w, void * userdata) {
 
 
 public:
-  Client(const char * name = 0, waypointlibrarystub st) : WaypointGUI(name) {
+  Client(const char * name = 0, waypointlibrarystub st = 0) : WaypointGUI(name) {
     // connect to server
     stub = st;
     std::cout << "Connecting to host " << host << std::endl;
