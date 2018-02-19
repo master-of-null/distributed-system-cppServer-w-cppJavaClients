@@ -50,6 +50,7 @@ public class WaypointCollectionClient extends WaypointGUI implements
    
 
     public WaypointCollectionClient(String base, String url) {
+      System.out.println("houston we have a problem\n");
       super(base);
       removeWPButt.addActionListener(this);
       addWPButt.addActionListener(this);
@@ -60,7 +61,6 @@ public class WaypointCollectionClient extends WaypointGUI implements
       frWps.addItemListener(this);
       toWps.addItemListener(this);
       hashi = importFile("waypoints.json");
-      System.out.println("houston we have a problem\n");
 
       try {
          wc = new WaypointCollectionHttpProxy(new URL(url));
