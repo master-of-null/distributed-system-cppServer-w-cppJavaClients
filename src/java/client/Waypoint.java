@@ -33,7 +33,7 @@ public class Waypoint {
 
    private static final boolean debugOn = false;
 
-   public Waypoint name, address;
+   public String name, address;
    public double ele, lat, lon;
 
    public Waypoint(String aName, String aAddress, double aEle, double aLat, double aLon){
