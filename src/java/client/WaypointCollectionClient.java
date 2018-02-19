@@ -52,11 +52,11 @@ public class WaypointCollectionClient extends WaypointGUI implements
     public WaypointCollectionClient(String base, String url) {
       super(base);
       removeWPButt.addActionListener(this);
-      System.out.println("houston we have a problem\n");
       addWPButt.addActionListener(this);
       modWPButt.addActionListener(this);
       importButt.addActionListener(this);
       exportButt.addActionListener(this);
+      System.out.println("houston we have a problem\n");
       distBearButt.addActionListener(this);
       frWps.addItemListener(this);
       toWps.addItemListener(this);
