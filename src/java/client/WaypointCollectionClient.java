@@ -46,6 +46,7 @@ public class WaypointCollectionClient extends WaypointGUI implements
 
    private static final boolean debugOn = true;
    private JSONObject hashi;
+   private WaypointCollectionHttpProxy wc;
    
 
     public WaypointCollectionClient(String base, String url) {
@@ -60,7 +61,7 @@ public class WaypointCollectionClient extends WaypointGUI implements
       toWps.addItemListener(this);
       hashi = importFile("waypoints.json");
 
-      WaypointCollectionHttpProxy wc = new WaypointCollectionHttpProxy(new URL(url));
+      wc = new WaypointCollectionHttpProxy(new URL(url));
 
 
       this.addWindowListener(new WindowAdapter() {
