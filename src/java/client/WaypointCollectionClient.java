@@ -60,10 +60,11 @@ public class WaypointCollectionClient extends WaypointGUI implements
       frWps.addItemListener(this);
       toWps.addItemListener(this);
       hashi = importFile("waypoints.json");
+      System.out.println("houston we have a problem\n");
 
       try {
          wc = new WaypointCollectionHttpProxy(new URL(url));
-         
+
       }catch (Exception e) {
          e.printStackTrace();
          System.out.println("Oops, you didn't enter the right stuff");
