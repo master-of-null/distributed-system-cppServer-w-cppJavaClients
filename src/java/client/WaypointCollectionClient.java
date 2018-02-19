@@ -208,7 +208,7 @@ public class WaypointCollectionClient extends WaypointGUI implements
          if (args.length >= 1) {
             name = args[0];
          }
-         Assign2Martinez sa2 = new Assign2Martinez(name);
+         WaypointCollectionClient sa2 = new WaypointCollectionClient(name);
       }catch (Exception ex){
          ex.printStackTrace();
       }
