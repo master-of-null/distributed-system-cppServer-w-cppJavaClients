@@ -90,9 +90,9 @@ public class WaypointCollectionClient extends WaypointGUI implements
 
    public void actionPerformed(ActionEvent e) {
       if(e.getActionCommand().equals("Remove")) {
-         // debug("you clicked Remove Waypoint");
-         // removeWps(frWps.getSelectedItem().toString(),
-         // toWps.getSelectedItem().toString());
+         debug("you clicked Remove Waypoint");
+         removeWps(frWps.getSelectedItem().toString(),
+         toWps.getSelectedItem().toString());
       }else if(e.getActionCommand().equals("Add")) {
          // debug("you clicked Add Waypoint");
          // addWp();
