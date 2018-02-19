@@ -108,7 +108,7 @@ public class WaypointCollectionClient extends WaypointGUI implements
     distBearIn.setText("Added: "+nameIn.getText());
    }else if(e.getActionCommand().equals("Modify")) {
     debug("you clicked Modify Waypoint");
-    modifyWP(nameIn.getText());
+    addWp();
    }else if(e.getActionCommand().equals("Import")) {
     debug("you clicked Import Json Library");
     hashi = importFile("waypoints.json");
@@ -171,6 +171,14 @@ public class WaypointCollectionClient extends WaypointGUI implements
     ele = Double.parseDouble(eleIn.getText());
     name = nameIn.getText();
     addr = addrIn.getText();
+
+    JSONObject json = new JSONObject();
+    json.put("address", addr);
+    json.put("name", name);
+    json.put("lon", lon);
+    json.put("lat", lat);
+    json.put("ele", ele);
+    hashi.put(name, json);
 
     Waypoint wp = new Waypoint(name, addr, ele, lat, lon);
     wc.add(wp);
