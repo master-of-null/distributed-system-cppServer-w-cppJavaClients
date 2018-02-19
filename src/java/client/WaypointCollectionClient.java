@@ -60,7 +60,7 @@ public class WaypointCollectionClient extends WaypointGUI implements
       toWps.addItemListener(this);
       hashi = importFile("waypoints.json");
 
-      StudentCollectionHttpProxy sc = new StudentCollectionHttpProxy(new URL(url));
+      WayopintCollectionHttpProxy wc = new WayopintCollectionHttpProxy(new URL(url));
 
 
       this.addWindowListener(new WindowAdapter() {
@@ -125,12 +125,12 @@ public class WaypointCollectionClient extends WaypointGUI implements
     
     private JSONObject importFile(String jsonFileName) {
       try {
-          // FileInputStream in = new FileInputStream(jsonFileName);
-          // JSONObject obj = new JSONObject(new JSONTokener(in));
-          boolean successful = sc.resetFromJsonFile();
+          FileInputStream in = new FileInputStream(jsonFileName);
+          JSONObject obj = new JSONObject(new JSONTokener(in));
+          boolean successful = wc.resetFromJsonFile();
           if(successful)
             System.out.println("names are:");
-         String [] names = sc.getNames();
+         String [] names = wc.getNames();
           for(int i = 0; i < names.length; i++) {
             frWps.addItem(names[i]);
             toWps.addItem(names[i]);
