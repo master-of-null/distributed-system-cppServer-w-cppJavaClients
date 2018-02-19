@@ -55,14 +55,10 @@
 // using namespace jsonrpc;
 
 
-string host = "http://127.0.0.1:8080";
-// if(argc>1){
-//    host = string(argv[1]);
-// }
-jsonrpc::HttpClient httpclient(host);
-waypointlibrarystub sc(httpclient);
 
 class Client : public WaypointGUI {
+
+  waypointlibrarystub stub;
 
    /** ClickedX is one of the callbacks for GUI controls.
     * Callbacks need to be static functions. But, static functions
@@ -94,7 +90,7 @@ static void ClickedRemoveWP(Fl_Widget * w, void * userdata) {
      }else{
        theWPChoice->value("");
      }
-     sc.remove(selected);
+     wc.remove(selected);
    }
 
    static void ClickedAddWP(Fl_Widget * w, void * userdata) {
@@ -129,7 +125,7 @@ static void ClickedRemoveWP(Fl_Widget * w, void * userdata) {
       root["lat"] = latNum;
       root["lon"] = lonNum;
 
-      sc.add(root);
+      wc.add(root);
 
       fromWPChoice->add(name.c_str());
       toWPChoice->add(name.c_str());
@@ -168,7 +164,7 @@ static void ClickedRemoveWP(Fl_Widget * w, void * userdata) {
       root["lat"] = latNum;
       root["lon"] = lonNum;
 
-      sc.add(root);
+      wc.add(root);
 
       fromWPChoice->add(name.c_str());
       toWPChoice->add(name.c_str());
@@ -188,7 +184,7 @@ static void ClickedRemoveWP(Fl_Widget * w, void * userdata) {
     std::cout << "You selected from waypoint "
     << selected
     << std::endl;
-    Json::Value wp = sc.get(selected);
+    Json::Value wp = wc.get(selected);
 
     theName->value(wp["name"].asString().c_str());
     theAddr->value(wp["address"].asString().c_str());
@@ -215,7 +211,7 @@ static void ClickedRemoveWP(Fl_Widget * w, void * userdata) {
     std::cout << "You selected from waypoint "
     << selected
     << std::endl;
-    Json::Value wp = sc.get(selected);
+    Json::Value wp = wc.get(selected);
 
     theName->value(wp["name"].asString().c_str());
     theAddr->value(wp["address"].asString().c_str());
@@ -232,7 +228,7 @@ static void ClickedRemoveWP(Fl_Widget * w, void * userdata) {
 
 
   static void printWaypoints() {
-    Json::Value names = sc.getNames();
+    Json::Value names = wc.getNames();
     std::cout << names << std::endl;
   }
 
@@ -242,7 +238,7 @@ static void ClickedRemoveWP(Fl_Widget * w, void * userdata) {
   }
 
   static void ClickedExportFile(Fl_Widget *w, void *userdata) {
-    if(sc.saveToJsonFile())
+    if(wc.saveToJsonFile())
       std::cout << "Exported to file: waypoints.json" << std::endl;
   }
 
@@ -252,19 +248,19 @@ static void ClickedRemoveWP(Fl_Widget * w, void * userdata) {
     Fl_Input_Choice * toWps = anInstance->toWps;
     Fl_Input * distBear = anInstance->distBearIn;
     double fromLat, fromLon, toLat, toLon;
-    Json::Value frWp = sc.get(frWps->value());
-    Json::Value toWp = sc.get(toWps->value());
+    Json::Value frWp = wc.get(frWps->value());
+    Json::Value toWp = wc.get(toWps->value());
 
     fromLat = frWp["lat"].asDouble();
     fromLon = frWp["lon"].asDouble();
     toLat = toWp["lat"].asDouble();
     toLon = toWp["lon"].asDouble();
 
-    double distance = sc.distanceEarth(fromLat, fromLon, toLat, toLon);
+    double distance = wc.distanceEarth(fromLat, fromLon, toLat, toLon);
     char distFormat[10];
     sprintf(distFormat,"%4.2f",distance);
     string dist(distFormat);
-    double degree = sc.bearing(fromLat, fromLon, toLat, toLon);
+    double degree = wc.bearing(fromLat, fromLon, toLat, toLon);
     char degFormat[10];
     sprintf(degFormat, "%4.2f", degree);
     string deg(degFormat);
@@ -276,7 +272,7 @@ static void ClickedRemoveWP(Fl_Widget * w, void * userdata) {
   }
 
   static void resetNames(void * userdata) {
-    Json::Value names = sc.getNames();
+    Json::Value names = wc.getNames();
     Client* anInstance = (Client*)userdata;
     Fl_Input_Choice * fromWPChoice = anInstance->frWps;
     Fl_Input_Choice * toWPChoice = anInstance->toWps;
@@ -291,9 +287,9 @@ static void ClickedRemoveWP(Fl_Widget * w, void * userdata) {
 
 
 public:
-  Client(const char * name = 0) : WaypointGUI(name) {
+  Client(const char * name = 0, waypointlibrarystub st) : WaypointGUI(name) {
     // connect to server
-
+    stub = st;
     std::cout << "Connecting to host " << host << std::endl;
     resetNames((void*)this);
 
@@ -311,9 +307,15 @@ public:
 
 int main(int argc, char*argv[]) {
 
+  string host = "http://127.0.0.1:8080";
+  // if(argc>1){
+  //    host = string(argv[1]);
+  // }
+  jsonrpc::HttpClient httpclient(host);
+  waypointlibrarystub wc(httpclient);
 
 
-  Client cm("C++ Waypoint Browser");
+  Client cm("C++ Waypoint Browser", wc);
   return (Fl::run());
 }
 
