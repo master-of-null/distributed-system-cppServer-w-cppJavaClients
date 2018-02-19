@@ -245,6 +245,7 @@ static void ClickedRemoveWP(Fl_Widget * w, void * userdata) {
   }
 
   static void ClickedExportFile(Fl_Widget *w, void *userdata) {
+    waypointlibrarystub wc = connectToServer(host);
     if(wc.saveToJsonFile())
       std::cout << "Exported to file: waypoints.json" << std::endl;
   }
