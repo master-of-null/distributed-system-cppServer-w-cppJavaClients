@@ -56,7 +56,6 @@
 
 
 class Client : public WaypointGUI {
-  static (void*) wc;
 
    /** ClickedX is one of the callbacks for GUI controls.
     * Callbacks need to be static functions. But, static functions
