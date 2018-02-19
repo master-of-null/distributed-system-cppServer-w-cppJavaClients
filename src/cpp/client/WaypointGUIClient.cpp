@@ -57,7 +57,7 @@
 
 class Client : public WaypointGUI {
 
-  
+  waypointlibrarystub wc;
 
    /** ClickedX is one of the callbacks for GUI controls.
     * Callbacks need to be static functions. But, static functions
@@ -284,15 +284,18 @@ static void ClickedRemoveWP(Fl_Widget * w, void * userdata) {
     }
   }
 
+  static void conneect(string host) {
+    jsonrpc::HttpClient httpclient(host);
+    waypointlibrarystub wc(httpclient);
+    std::cout << "Connecting to host " << host << std::endl;
+  }
+
 
 public:
-  static waypointlibrarystub wc;
+  
   Client(const char * name = 0, string host = "http://127.0.0.1:8080") : WaypointGUI(name) {
     // connect to server
-    jsonrpc::HttpClient httpclient(host);
-    waypointlibrarystub stub(httpclient);
-    wc = stub;
-    std::cout << "Connecting to host " << host << std::endl;
+    connect(host);
     resetNames((void*)this);
 
     removeWPButt->callback(ClickedRemoveWP, (void*)this, wc);
