@@ -90,28 +90,28 @@ public class WaypointCollectionClient extends WaypointGUI implements
 
    public void actionPerformed(ActionEvent e) {
       if(e.getActionCommand().equals("Remove")) {
-         debug("you clicked Remove Waypoint");
-         removeWps(frWps.getSelectedItem().toString(),
-         toWps.getSelectedItem().toString());
+         // debug("you clicked Remove Waypoint");
+         // removeWps(frWps.getSelectedItem().toString(),
+         // toWps.getSelectedItem().toString());
       }else if(e.getActionCommand().equals("Add")) {
-         debug("you clicked Add Waypoint");
-         addWp();
-         frWps.addItem(nameIn.getText());
-         toWps.addItem(nameIn.getText());
-         distBearIn.setText("Added: "+nameIn.getText());
+         // debug("you clicked Add Waypoint");
+         // addWp();
+         // frWps.addItem(nameIn.getText());
+         // toWps.addItem(nameIn.getText());
+         // distBearIn.setText("Added: "+nameIn.getText());
       }else if(e.getActionCommand().equals("Modify")) {
          debug("you clicked Modify Waypoint");
-         modifyWP(nameIn.getText());
+         // modifyWP(nameIn.getText());
       }else if(e.getActionCommand().equals("Import")) {
          //debug("you clicked Import Json Library");
-         hashi = importFile("waypoints.json");
+         // hashi = importFile("waypoints.json");
       }else if(e.getActionCommand().equals("Export")) {
          debug("you clicked Export Json Library");
          exportFile();
       }else if(e.getActionCommand().equals("Distance")) {
-         debug("you clicked Distance and Bearing");
-         distBearIn.setText(String.valueOf(haversineDistance()) + "km, "
-            + String.valueOf(haversineBearing() + " degrees"));
+         // debug("you clicked Distance and Bearing");
+         // distBearIn.setText(String.valueOf(haversineDistance()) + "km, "
+         //    + String.valueOf(haversineBearing() + " degrees"));
       }
    }
 
