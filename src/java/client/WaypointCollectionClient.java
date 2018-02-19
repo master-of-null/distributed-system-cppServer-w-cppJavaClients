@@ -138,6 +138,7 @@ public class WaypointCollectionClient extends WaypointGUI implements
       for(int i = 0; i < names.length; i++) {
         frWps.addItem(names[i]);
         toWps.addItem(names[i]);
+        System.out.println(names[i]);
       }
       return obj;
     }
