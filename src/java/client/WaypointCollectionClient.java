@@ -157,9 +157,10 @@ public class WaypointCollectionClient extends WaypointGUI implements
       // file.close();
       wc.saveToJsonFile();
       System.out.println("done");
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
+    } 
+    // catch (IOException e) {
+    //   e.printStackTrace();
+    // }
   }
 
   private void addWp() {
