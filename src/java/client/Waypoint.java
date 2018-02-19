@@ -1,4 +1,4 @@
-package sample.student.client;
+package sample.waypoint.client;
 /*
  * Copyright 2016 Tim Lindquist,
  *

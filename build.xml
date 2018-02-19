@@ -194,9 +194,9 @@
           description="Compile Java client sources">
      <!-- Compile Java classes as necessary -->
      <echo message="execute: java -cp classes:lib/json.jar sample.waypoint.client.WaypointCollectionClient localhost 8080"/>
-     <javac destdir="${classes.dir}"
+     <javac srcdir="${src.dir}/java/client"
+            destdir="${classes.dir}"
             includeantruntime="false">
-        <src path="${src.dir}/java/client"/>
         <classpath refid="compile.classpath"/>
      </javac>
    </target>
