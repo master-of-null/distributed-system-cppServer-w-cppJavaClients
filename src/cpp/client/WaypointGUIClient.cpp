@@ -108,19 +108,9 @@ static void ClickedRemoveWP(Fl_Widget * w, void * userdata) {
       Fl_Multiline_Input *theAddr = anInstance->addrIn;
 
       std::string lat(theLat->value()), lon(theLon->value()), ele(theEle->value());
-      // what follows is not expedient, but shows how to convert to/from
-      // double and formatted C and C++ strings.
       double latNum = atof(lat.c_str());  //convert from string to double
       double lonNum = atof(lon.c_str());
       double eleNum = atof(ele.c_str());
-
-      char latFormat[10], eleFormat[10], lonFormat[10];
-      sprintf(latFormat,"%4.4f",latNum);  //format the double into a C string
-      std::string latCppStr(latFormat);   //convert formatted C str to C++ str
-      sprintf(lonFormat,"%4.4f",lonNum);  //format the double into a C string
-      std::string lonCppStr(lonFormat);   //convert formatted C str to C++ str
-      sprintf(eleFormat,"%4.4f",eleNum);  //format the double into a C string
-      std::string eleCppStr(eleFormat);   //convert formatted C str to C++ str
 
       std::string name(theName->value());
       string addr(theAddr->value());
@@ -134,7 +124,7 @@ static void ClickedRemoveWP(Fl_Widget * w, void * userdata) {
       Json::Value root;
       Json::Reader reader;
       reader.parse(jsonStr.c_str(), root);
-      
+
       root["ele"] = eleNum;
       root["lat"] = latNum;
       root["lon"] = lonNum;
@@ -146,39 +136,44 @@ static void ClickedRemoveWP(Fl_Widget * w, void * userdata) {
       fromWPChoice->value(name.c_str());
    }
 
-  // static void ClickedModifyWP(Fl_Widget *w, void *userdata) {
-  //     Client* anInstance = (Client*)userdata;
-  //     Fl_Input_Choice * fromWPChoice = anInstance->frWps;
-  //     Fl_Input_Choice * toWPChoice = anInstance->toWps;
-  //     Fl_Input * theLat = anInstance->latIn;
-  //     Fl_Input * theLon = anInstance->lonIn;
-  //     Fl_Input * theEle = anInstance->eleIn;
-  //     Fl_Input * theName = anInstance->nameIn;
-  //     Fl_Multiline_Input *theAddr = anInstance->addrIn;
+  static void ClickedModifyWP(Fl_Widget *w, void *userdata) {
+      Client* anInstance = (Client*)userdata;
+      Fl_Input_Choice * fromWPChoice = anInstance->frWps;
+      Fl_Input_Choice * toWPChoice = anInstance->toWps;
+      Fl_Input * theLat = anInstance->latIn;
+      Fl_Input * theLon = anInstance->lonIn;
+      Fl_Input * theEle = anInstance->eleIn;
+      Fl_Input * theName = anInstance->nameIn;
+      Fl_Multiline_Input *theAddr = anInstance->addrIn;
 
-  //     string lat(theLat->value()), lon(theLon->value()), ele(theEle->value());
-  //     // what follows is not expedient, but shows how to convert to/from
-  //     // double and formatted C and C++ strings.
-  //     double latNum = atof(lat.c_str());  //convert from string to double
-  //     double lonNum = atof(lon.c_str());
-  //     double eleNum = atof(ele.c_str());
+      std::string lat(theLat->value()), lon(theLon->value()), ele(theEle->value());
+      double latNum = atof(lat.c_str());  //convert from string to double
+      double lonNum = atof(lon.c_str());
+      double eleNum = atof(ele.c_str());
 
-  //     char latFormat[10];
-  //     sprintf(latFormat,"%4.4f",latNum);  //format the double into a C string
-  //     std::string latCppStr(latFormat);   //convert formatted C str to C++ str
-  //     std::cout << "Clicked Modify WP" << std::endl;
-  //     std::string name(theName->value());
-  //     string addr(theAddr->value());
+      std::string name(theName->value());
+      string addr(theAddr->value());
+      
+      std::string jsonStr = "{\"name\":\""+name+
+        "\",\"address\":\""+addr+"\""+
+        "\",\"ele\":\"\""+
+        "\",\"lat\":\"\""+
+        "\",\"lon\":\"\"}";
 
-  //     Waypoint wp = wpObjs->get(name);
-  //     wpObjs->remove(wp.name);
-  //     // wpObjs->add(Waypoint(name, addr, eleNum, latNum, lonNum)); // comment
-  //     wpObjs->add("{\"name\":\""+name+
-  //       "\",\"address\":\""+address+"\""+
-  //       "\",\"ele\":\""+eleNum+"\""+
-  //       "\",\"lat\":\""+latNum+"\""+
-  //       "\",\"lon\":\""+lonNum+"\"}");
-  // }
+      Json::Value root;
+      Json::Reader reader;
+      reader.parse(jsonStr.c_str(), root);
+
+      root["ele"] = eleNum;
+      root["lat"] = latNum;
+      root["lon"] = lonNum;
+
+      sc.add(root);
+
+      fromWPChoice->add(name.c_str());
+      toWPChoice->add(name.c_str());
+      fromWPChoice->value(name.c_str());
+  }
 
   static void SelectedFromWP(Fl_Widget * w, void * userdata) { // done
     Client* anInstance = (Client*)userdata;
@@ -304,7 +299,7 @@ public:
 
     removeWPButt->callback(ClickedRemoveWP, (void*)this);
     addWPButt->callback(ClickedAddWP, (void*)this);
-    // modWPButt->callback(ClickedModifyWP, (void*)this);
+    modWPButt->callback(ClickedModifyWP, (void*)this);
     frWps->callback(SelectedFromWP, (void*)this);
     toWps->callback(SelectedToWP, (void*)this);
     getLatLonButt->callback(ClickedImportFile, (void*)this);
