@@ -150,14 +150,14 @@ public class WaypointCollectionClient extends WaypointGUI implements
   }
 
   private void exportFile() {
-    try {
+    // try {
       // FileWriter file = new FileWriter("waypoints.json");
       // file.write(hashi.toString());
       // file.flush();
       // file.close();
       wc.saveToJsonFile();
       System.out.println("done");
-    } 
+    // } 
     // catch (IOException e) {
     //   e.printStackTrace();
     // }
