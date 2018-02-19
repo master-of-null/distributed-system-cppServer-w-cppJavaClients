@@ -172,14 +172,6 @@ public class WaypointCollectionClient extends WaypointGUI implements
     name = nameIn.getText();
     addr = addrIn.getText();
 
-    JSONObject json = new JSONObject();
-    json.put("address", addr);
-    json.put("name", name);
-    json.put("lon", lon);
-    json.put("lat", lat);
-    json.put("ele", ele);
-    hashi.put(name, json);
-
     Waypoint wp = new Waypoint(name, addr, ele, lat, lon);
     wc.add(wp);
   }
