@@ -299,7 +299,7 @@ static void ClickedRemoveWP(Fl_Widget * w, void * userdata) {
     jsonrpc::HttpClient httpclient(host);
     waypointlibrarystub wc(httpclient);
     std::cout << "Connecting to host " << host << std::endl;
-    return wc
+    return wc;
   }
 
 
