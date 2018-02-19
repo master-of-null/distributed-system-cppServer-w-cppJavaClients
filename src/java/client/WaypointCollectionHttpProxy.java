@@ -43,7 +43,9 @@ public class WaypointCollectionHttpProxy {
          JSONArray params = new JSONArray();
          jobj.put("params",params);
          String request = jobj.toString();
+         System.out.println("request " + request);
          String response = this.call(request);
+         System.out.println("response => " + response);
          debug("getNames returned: "+response);
          JSONObject respObj = new JSONObject(response);
          if(!respObj.has("error")){
@@ -65,7 +67,6 @@ public class WaypointCollectionHttpProxy {
          JSONArray params = new JSONArray();
          jobj.put("params",params);
          String request = jobj.toString();
-         System.out.println(request);
          String response = this.call(request);
          debug("getNames returned: "+response);
          JSONObject respObj = new JSONObject(response);
