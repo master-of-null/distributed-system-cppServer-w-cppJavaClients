@@ -61,9 +61,8 @@ public class WaypointCollectionHttpProxy {
    public boolean resetFromJsonFile(){
       boolean ret = false;
       try{
-         
-         System.out.println("houston we have a problem\n");
          JSONObject jobj = this.buildCall("resetFromJsonFile");
+         System.out.println("houston we have a problem\n");
          JSONArray params = new JSONArray();
          jobj.put("params",params);
          String request = jobj.toString();
