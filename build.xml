@@ -110,6 +110,17 @@
             message="Building on ${os.name} is not supported" />
       <echo message="build.host.platform is: ${build.host.platform}"/>
       <if>
+         <isset property="build.host.ismac"/>
+         <then>
+            <echo message="detected a mac host"/>
+            <property name="cxxflag" value="-std=c++14"/>
+            <property name="includepath" value="/opt/local/include:/usr/local/include"/>
+            <property name="client.lib.path" value="/opt/local/lib"/>
+            <property name="client.lib.list" value="c++,jsoncpp,jsonrpccpp-client,jsonrpccpp-common,fltk,microhttpd,stdc++"/>
+            <property name="server.lib.path" value="/opt/local/lib"/>
+            <property name="server.lib.list" value="c++,jsoncpp,jsonrpccpp-server,jsonrpccpp-common,m,microhttpd"/>
+         </then>
+      <elseif>
          <isset property="build.host.islinux"/>
          <then>
             <echo message="detected a linux host"/>
