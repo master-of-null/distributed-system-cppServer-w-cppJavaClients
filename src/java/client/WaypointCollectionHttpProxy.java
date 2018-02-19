@@ -119,7 +119,7 @@ public class WaypointCollectionHttpProxy {
 
 
    public Waypoint get(String aName){
-      Waypoint ret = new Waypoint("unknown",999,new String[]{"Ser321"});
+      Waypoint ret = new Waypoint("unknown","unknown", 0, 0, 0);
       try{
          JSONObject jobj = this.buildCall("get");
          JSONArray params = new JSONArray();
