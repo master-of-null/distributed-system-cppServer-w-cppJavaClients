@@ -65,13 +65,13 @@ public class WaypointCollectionHttpProxy {
          JSONArray params = new JSONArray();
          jobj.put("params",params);
          String request = jobj.toString();
+         System.out.println("houston we have a problem\n");
          String response = this.call(request);
          debug("getNames returned: "+response);
          JSONObject respObj = new JSONObject(response);
          if(!respObj.has("error")){
             ret = respObj.optBoolean("result");
          }
-         System.out.println("houston we have a problem\n");
       }catch(Exception ex){
          System.out.println("exception in resetFromJsonFile error: "+ex.getMessage());
       }
