@@ -184,8 +184,7 @@ public class WaypointCollectionHttpProxy {
    }
 
    public double bearing(double fromLat, double fromLon, double toLat, double toLon) {
-      double fromLat, fromLon, toLat, toLon, fromLatRad, toLatRad,
-      deltaLngRad, y, x, bearing;
+      double fromLatRad, toLatRad, deltaLngRad, y, x, bearing;
 
       deltaLngRad = Math.toRadians(toLon - fromLon);
       fromLatRad = Math.toRadians(fromLat);
