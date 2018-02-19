@@ -54,7 +54,6 @@
 
 // using namespace jsonrpc;
 
-waypointlibrarystub wc;
 
 class Client : public WaypointGUI {
 
@@ -290,7 +289,7 @@ public:
   Client(const char * name = 0, string host = "http://127.0.0.1:8080") : WaypointGUI(name) {
     // connect to server
     jsonrpc::HttpClient httpclient(host);
-    waypointlibrarystub wc(httpclient);
+    wc = waypointlibrarystub stub(httpclient);
     std::cout << "Connecting to host " << host << std::endl;
     resetNames((void*)this);
 
