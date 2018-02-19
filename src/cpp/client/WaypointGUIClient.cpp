@@ -298,7 +298,7 @@ public:
     connectToServer(host);
     resetNames((void*)this);
 
-    removeWPButt->callback(ClickedRemoveWP, (void*)this, wc);
+    removeWPButt->callback(ClickedRemoveWP, (void*)this);
     addWPButt->callback(ClickedAddWP, (void*)this);
     modWPButt->callback(ClickedModifyWP, (void*)this);
     frWps->callback(SelectedFromWP, (void*)this);
