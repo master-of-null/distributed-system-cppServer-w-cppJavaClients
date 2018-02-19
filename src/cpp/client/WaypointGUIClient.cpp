@@ -54,9 +54,7 @@
 
 // using namespace jsonrpc;
 
-  string host = "http://127.0.0.1:8080";
-  jsonrpc::HttpClient httpclient(host);
-  static waypointlibrarystub wc(httpclient);
+
 
 class Client : public WaypointGUI {
    /** ClickedX is one of the callbacks for GUI controls.
@@ -66,12 +64,16 @@ class Client : public WaypointGUI {
     * function. The callback then accesses whatever GUI control object
     * that it needs for implementing its functionality.
     */
+  string host;
+
+
  static void ClickedX(Fl_Widget * w, void * userdata) {
   std::cout << "You clicked Exit" << std::endl;
   exit(1);
 }
 
 static void ClickedRemoveWP(Fl_Widget * w, void * userdata) {
+  waypointlibrarystub wc = connectToServer(host);
   Client* anInstance = (Client*)userdata;
   Fl_Input_Choice * theWPChoice = anInstance->frWps;
   std::string selected(theWPChoice->value());
@@ -93,6 +95,7 @@ static void ClickedRemoveWP(Fl_Widget * w, void * userdata) {
    }
 
    static void ClickedAddWP(Fl_Widget * w, void * userdata) {
+      waypointlibrarystub wc = connectToServer(host);
       Client* anInstance = (Client*)userdata;
       Fl_Input_Choice * fromWPChoice = anInstance->frWps;
       Fl_Input_Choice * toWPChoice = anInstance->toWps;
@@ -132,6 +135,7 @@ static void ClickedRemoveWP(Fl_Widget * w, void * userdata) {
    }
 
   static void ClickedModifyWP(Fl_Widget *w, void *userdata) {
+      waypointlibrarystub wc = connectToServer(host);
       Client* anInstance = (Client*)userdata;
       Fl_Input_Choice * fromWPChoice = anInstance->frWps;
       Fl_Input_Choice * toWPChoice = anInstance->toWps;
@@ -171,6 +175,7 @@ static void ClickedRemoveWP(Fl_Widget * w, void * userdata) {
   }
 
   static void SelectedFromWP(Fl_Widget * w, void * userdata) { // done
+    waypointlibrarystub wc = connectToServer(host);
     Client* anInstance = (Client*)userdata;
     Fl_Input_Choice * frWps = anInstance->frWps;
     Fl_Input * theLat = anInstance->latIn;
@@ -198,6 +203,7 @@ static void ClickedRemoveWP(Fl_Widget * w, void * userdata) {
   }
 
   static void SelectedToWP(Fl_Widget * w, void * userdata) {
+    waypointlibrarystub wc = connectToServer(host);
     Client* anInstance = (Client*)userdata;
     Fl_Input_Choice * toWps = anInstance->toWps;
     Fl_Input * theLat = anInstance->latIn;
@@ -227,11 +233,13 @@ static void ClickedRemoveWP(Fl_Widget * w, void * userdata) {
 
 
   static void printWaypoints() {
+    waypointlibrarystub wc = connectToServer(host);
     Json::Value names = wc.getNames();
     std::cout << names << std::endl;
   }
 
   static void ClickedImportFile(Fl_Widget *w, void * userdata) {
+    waypointlibrarystub wc = connectToServer(host);
     resetNames((void*) userdata);
     std::cout << "Starting import from waypoints.json file from Server" << std::endl;
   }
@@ -242,6 +250,7 @@ static void ClickedRemoveWP(Fl_Widget * w, void * userdata) {
   }
 
   static void getDistanceAndBearing(Fl_Widget *w, void *userdata) {
+    waypointlibrarystub wc = connectToServer(host);
     Client* anInstance = (Client*)userdata;
     Fl_Input_Choice * frWps = anInstance->frWps;
     Fl_Input_Choice * toWps = anInstance->toWps;
@@ -271,6 +280,7 @@ static void ClickedRemoveWP(Fl_Widget * w, void * userdata) {
   }
 
   static void resetNames(void * userdata) {
+    waypointlibrarystub wc = connectToServer(host);
     Json::Value names = wc.getNames();
     Client* anInstance = (Client*)userdata;
     Fl_Input_Choice * fromWPChoice = anInstance->frWps;
@@ -284,17 +294,19 @@ static void ClickedRemoveWP(Fl_Widget * w, void * userdata) {
     }
   }
 
-  static void connectToServer(string host) {
+  static waypointlibrarystub connectToServer(string host) {
     jsonrpc::HttpClient httpclient(host);
-    wc = waypointlibrarystub stu(httpclient);
+    waypointlibrarystub wc(httpclient);
     std::cout << "Connecting to host " << host << std::endl;
+    return wc
   }
 
 
 public:
   
-  Client(const char * name = 0, string host = "http://127.0.0.1:8080") : WaypointGUI(name) {
+  Client(const char * name = 0, string aHost = "http://127.0.0.1:8080") : WaypointGUI(name) {
     // connect to server
+    host = aHost;
     connectToServer(host);
     resetNames((void*)this);
 
