@@ -59,7 +59,6 @@ public class WaypointCollectionClient extends WaypointGUI implements
       distBearButt.addActionListener(this);
       frWps.addItemListener(this);
       toWps.addItemListener(this);
-      hashi = importFile("waypoints.json");
       System.out.println("houston we have a problem\n");
 
 
@@ -70,6 +69,7 @@ public class WaypointCollectionClient extends WaypointGUI implements
          e.printStackTrace();
          System.out.println("Oops, you didn't enter the right stuff");
       }
+      hashi = importFile("waypoints.json");
 
 
       this.addWindowListener(new WindowAdapter() {
