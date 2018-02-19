@@ -48,7 +48,7 @@ public class WaypointCollectionClient extends WaypointGUI implements
    private JSONObject hashi;
    
 
-    public WaypointCollectionClient(String base) {
+    public WaypointCollectionClient(String base, String url) {
       super(base);
       removeWPButt.addActionListener(this);
       addWPButt.addActionListener(this);
@@ -59,6 +59,9 @@ public class WaypointCollectionClient extends WaypointGUI implements
       frWps.addItemListener(this);
       toWps.addItemListener(this);
       hashi = importFile("waypoints.json");
+
+      StudentCollectionHttpProxy sc = new StudentCollectionHttpProxy(new URL(url));
+
 
       this.addWindowListener(new WindowAdapter() {
          @Override
@@ -101,7 +104,7 @@ public class WaypointCollectionClient extends WaypointGUI implements
          distBearIn.setText("Added: "+nameIn.getText());
       }else if(e.getActionCommand().equals("Modify")) {
          debug("you clicked Modify Waypoint");
-         // modifyWP(nameIn.getText());
+         modifyWP(nameIn.getText());
       }else if(e.getActionCommand().equals("Import")) {
          debug("you clicked Import Json Library");
          hashi = importFile("waypoints.json");
@@ -122,13 +125,15 @@ public class WaypointCollectionClient extends WaypointGUI implements
     
     private JSONObject importFile(String jsonFileName) {
       try {
-          FileInputStream in = new FileInputStream(jsonFileName);
-          JSONObject obj = new JSONObject(new JSONTokener(in));
-          String [] names = JSONObject.getNames(obj);
-          System.out.println("names are:");
+          // FileInputStream in = new FileInputStream(jsonFileName);
+          // JSONObject obj = new JSONObject(new JSONTokener(in));
+          boolean successful = sc.resetFromJsonFile();
+          if(successful)
+            System.out.println("names are:");
+         String [] names = sc.getNames();
           for(int i = 0; i < names.length; i++) {
-         frWps.addItem(names[i]);
-         toWps.addItem(names[i]);
+            frWps.addItem(names[i]);
+            toWps.addItem(names[i]);
           }
           return obj;
       }
@@ -169,22 +174,22 @@ public class WaypointCollectionClient extends WaypointGUI implements
       hashi.put(name, json);
     }
 
-    // private void modifyWP(String name) {
-    //   JSONObject json = hashi.getJSONObject(name);
-    //   double lat, lon, ele;
-    //   String addr;
+    private void modifyWP(String name) {
+      JSONObject json = hashi.getJSONObject(name);
+      double lat, lon, ele;
+      String addr;
 
-    //   lat = Double.parseDouble(latIn.getText());
-    //   lon = Double.parseDouble(lonIn.getText());
-    //   ele = Double.parseDouble(eleIn.getText());
-    //   name = nameIn.getText();
-    //   addr = addrIn.getText();
-    //   json.put("address", addr);
-    //   json.put("name", name);
-    //   json.put("lon", lon);
-    //   json.put("lat", lat);
-    //   json.put("ele", ele);
-    // }
+      lat = Double.parseDouble(latIn.getText());
+      lon = Double.parseDouble(lonIn.getText());
+      ele = Double.parseDouble(eleIn.getText());
+      name = nameIn.getText();
+      addr = addrIn.getText();
+      json.put("address", addr);
+      json.put("name", name);
+      json.put("lon", lon);
+      json.put("lat", lat);
+      json.put("ele", ele);
+    }
 
     private void removeWps(String from, String to) {
       if(!to.equals("to waypoint")){
@@ -203,14 +208,12 @@ public class WaypointCollectionClient extends WaypointGUI implements
 
 
    public static void main(String args[]) {
-      try{
-         String name = "Ser321";
-         if (args.length >= 1) {
-            name = args[0];
-         }
-         WaypointCollectionClient sa2 = new WaypointCollectionClient(name);
-      }catch (Exception ex){
-         ex.printStackTrace();
-      }
+      String host = "localhost";
+      String port = "8080";
+      
+      String url = "http://"+host+":"+port+"/";
+      System.out.println("Opening connection to: "+url);
+
+      WaypointCollectionClient sa2 = new WaypointCollectionClient(name, url);
    }
 }
