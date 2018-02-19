@@ -138,10 +138,10 @@ public class WaypointCollectionClient extends WaypointGUI implements
           if(successful)
             System.out.println("names are:");
          String [] names = wc.getNames();
-          // for(int i = 0; i < names.length; i++) {
-          //   frWps.addItem(names[i]);
-          //   toWps.addItem(names[i]);
-          // }
+          for(int i = 0; i < names.length; i++) {
+            frWps.addItem(names[i]);
+            toWps.addItem(names[i]);
+          }
           return obj;
       }
       catch(FileNotFoundException ex)

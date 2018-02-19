@@ -62,6 +62,7 @@ public class WaypointCollectionHttpProxy {
       boolean ret = false;
       try{
          JSONObject jobj = this.buildCall("resetFromJsonFile");
+         System.out.println("houston we have a problem\n");
          JSONArray params = new JSONArray();
          jobj.put("params",params);
          String request = jobj.toString();
@@ -252,7 +253,7 @@ public class WaypointCollectionHttpProxy {
          while ((n = in.read(buff)) > 0) {
             bos.write(buff, 0, n);
          }
-         bos.flush();
+         bos.flush(); 
          bos.close();
       } finally {
          if (in != null) {
