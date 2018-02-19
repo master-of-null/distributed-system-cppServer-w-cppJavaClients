@@ -41,7 +41,7 @@ public class WaypointCollectionClient extends WaypointGUI implements
    private JSONObject hashi;
    
 
-    public Assign2Martinez(String base) {
+    public WaypointCollectionClient(String base) {
       super(base);
       removeWPButt.addActionListener(this);
       addWPButt.addActionListener(this);
