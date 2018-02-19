@@ -100,10 +100,6 @@ public class WaypointCollectionClient extends Object {
                }
                boolean result = sc.remove(name);
                System.out.println("remove "+name+" result "+result);
-            }else if (opn.equalsIgnoreCase("getbyid")) {
-               int idNo = Integer.parseInt(st.nextToken());
-               String result = sc.getById(idNo);
-               System.out.println(result+" has id number "+idNo);
             }
             System.out.print("Enter end or {save|reset|add|get|getById|getNames|remove} followed by args>");
             inStr = stdin.readLine();
