@@ -57,9 +57,9 @@ public class WaypointCollectionClient extends WaypointGUI implements
       importButt.addActionListener(this);
       exportButt.addActionListener(this);
       distBearButt.addActionListener(this);
-      System.out.println("houston we have a problem\n");
       frWps.addItemListener(this);
       toWps.addItemListener(this);
+      System.out.println("houston we have a problem\n");
       hashi = importFile("waypoints.json");
 
 
