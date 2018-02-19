@@ -14,7 +14,7 @@ import java.awt.event.*;
 import java.awt.*;
 import java.util.*;
 /**
- * Copyright (c) 2016 Tim Lindquist,
+ * Copyright (c) 2018 Gabriel Martinez,
  * Software Engineering,
  * Arizona State University at the Polytechnic campus
  * <p/>
@@ -37,8 +37,8 @@ import java.util.*;
  * A Java class and main method demonstrating an approach to calling
  * JsonRpc methods where argument and return types are user-defined classes.
  *
- * @author Tim Lindquist (tim.lindquist@asu.edu), ASU Software Engineering
- * @version May 2016
+ * @author Gabriel Martinez (gmarti53@asu.edu)
+ * @version February 2018
  * @license See above
  */
 public class WaypointCollectionClient extends WaypointGUI implements
