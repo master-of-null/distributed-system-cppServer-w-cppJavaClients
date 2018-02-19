@@ -211,6 +211,7 @@ public class WaypointCollectionClient extends WaypointGUI implements
    public static void main(String args[]) {
       String host = "localhost";
       String port = "8080";
+      String name = "Java Waypoint Client";
       
       String url = "http://"+host+":"+port+"/";
       System.out.println("Opening connection to: "+url);
