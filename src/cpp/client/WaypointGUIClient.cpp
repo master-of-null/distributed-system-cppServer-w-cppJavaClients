@@ -56,7 +56,8 @@
 
 
 class Client : public WaypointGUI {
-  jsonrpc::HttpClient httpclient("http://127.0.0.1:8080");
+  string hostStr = "http://127.0.0.1:8080";
+  jsonrpc::HttpClient httpclient(hostStr);
   static waypointlibrarystub wc(httpclient);
    /** ClickedX is one of the callbacks for GUI controls.
     * Callbacks need to be static functions. But, static functions
