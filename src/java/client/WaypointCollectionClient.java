@@ -103,8 +103,8 @@ public class WaypointCollectionClient extends WaypointGUI implements
          debug("you clicked Modify Waypoint");
          // modifyWP(nameIn.getText());
       }else if(e.getActionCommand().equals("Import")) {
-         //debug("you clicked Import Json Library");
-         // hashi = importFile("waypoints.json");
+         debug("you clicked Import Json Library");
+         hashi = importFile("waypoints.json");
       }else if(e.getActionCommand().equals("Export")) {
          debug("you clicked Export Json Library");
          exportFile();
@@ -120,24 +120,24 @@ public class WaypointCollectionClient extends WaypointGUI implements
          System.out.println("debug: "+message);
    }
     
-    // private JSONObject importFile(String jsonFileName) {
-    //   try {
-    //       FileInputStream in = new FileInputStream(jsonFileName);
-    //       JSONObject obj = new JSONObject(new JSONTokener(in));
-    //       String [] names = JSONObject.getNames(obj);
-    //       System.out.println("names are:");
-    //       for(int i = 0; i < names.length; i++) {
-    //      frWps.addItem(names[i]);
-    //      toWps.addItem(names[i]);
-    //       }
-    //       return obj;
-    //   }
-    //   catch(FileNotFoundException ex)
-    //   {
-    //       System.out.println("Error uploading file " + jsonFileName);
-    //   }
-    //   return new JSONObject();
-    // }
+    private JSONObject importFile(String jsonFileName) {
+      try {
+          FileInputStream in = new FileInputStream(jsonFileName);
+          JSONObject obj = new JSONObject(new JSONTokener(in));
+          String [] names = JSONObject.getNames(obj);
+          System.out.println("names are:");
+          for(int i = 0; i < names.length; i++) {
+         frWps.addItem(names[i]);
+         toWps.addItem(names[i]);
+          }
+          return obj;
+      }
+      catch(FileNotFoundException ex)
+      {
+          System.out.println("Error uploading file " + jsonFileName);
+      }
+      return new JSONObject();
+    }
 
     private void exportFile() {
       try {
