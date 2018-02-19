@@ -257,7 +257,7 @@ public class WaypointCollectionClient extends WaypointGUI implements
 
     String host = "localhost";
     String port = "8080";
-    if(args.length > 2) {
+    if(args.length > 1) {
       host = args[0];
       port = args[1];
     }
