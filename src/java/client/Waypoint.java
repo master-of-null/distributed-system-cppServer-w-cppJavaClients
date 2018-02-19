@@ -34,7 +34,7 @@ public class Waypoint {
    private static final boolean debugOn = false;
 
    public Waypoint name, address;
-   public double ele, lat, lon
+   public double ele, lat, lon;
 
    public Waypoint(String name, String address, double ele, double lat, double lon){
       this.name = name;
