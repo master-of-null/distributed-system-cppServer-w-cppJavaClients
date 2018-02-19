@@ -50,8 +50,8 @@ public class WaypointCollectionClient extends WaypointGUI implements
    
 
     public WaypointCollectionClient(String base, String url) {
-      System.out.println("houston we have a problem\n");
       super(base);
+      System.out.println("houston we have a problem\n");
       removeWPButt.addActionListener(this);
       addWPButt.addActionListener(this);
       modWPButt.addActionListener(this);
