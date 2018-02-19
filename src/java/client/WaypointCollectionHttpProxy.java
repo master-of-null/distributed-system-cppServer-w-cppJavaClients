@@ -205,9 +205,10 @@ public class WaypointCollectionHttpProxy {
    }
 
    public String call(String requestData) throws Exception {
-      System.out.println("NEW YORKKKDFKDIIF");
       debug("in call, url: "+url.toString()+" requestData: "+requestData);
+      System.out.println("in call, url: "+url.toString()+" requestData: "+requestData);
       String respData = post(url, headers, requestData);
+      System.out.println(respData);
       return respData;
    }
 
