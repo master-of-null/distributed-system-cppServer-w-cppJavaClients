@@ -64,7 +64,6 @@ public class WaypointCollectionHttpProxy {
          JSONObject jobj = this.buildCall("resetFromJsonFile");
          JSONArray params = new JSONArray();
          jobj.put("params",params);
-         System.out.println("houston we have a problem\n");
          String request = jobj.toString();
          String response = this.call(request);
          debug("getNames returned: "+response);
@@ -72,6 +71,7 @@ public class WaypointCollectionHttpProxy {
          if(!respObj.has("error")){
             ret = respObj.optBoolean("result");
          }
+         System.out.println("houston we have a problem\n");
       }catch(Exception ex){
          System.out.println("exception in resetFromJsonFile error: "+ex.getMessage());
       }
