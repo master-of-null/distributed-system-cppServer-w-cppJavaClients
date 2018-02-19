@@ -70,9 +70,9 @@ public class WaypointCollectionClient extends Object {
                   name = name + st.nextToken();
                   if(st.hasMoreTokens()) name = name + " ";
                }
-               Waypoint aStud = new Waypoint(name,7,new String[]{"Ser423","Ser321"});
-               boolean result = sc.add(aStud);
-               System.out.println("Add "+aStud.name+" result "+result);
+               Waypoint aWp = new Waypoint(name,"123 Main st", 234, 234 ,2342.2);
+               boolean result = sc.add(aWp);
+               System.out.println("Add "+aWp.name+" result "+result);
             }else if (opn.equalsIgnoreCase("get")) {
                String name = st.nextToken();
                while(st.hasMoreTokens()){
