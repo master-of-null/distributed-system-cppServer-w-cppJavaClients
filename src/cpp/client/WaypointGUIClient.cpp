@@ -54,11 +54,11 @@
 
 // using namespace jsonrpc;
 
-
+waypointlibrarystub wc;
 
 class Client : public WaypointGUI {
 
-  static waypointlibrarystub wc;
+  
 
    /** ClickedX is one of the callbacks for GUI controls.
     * Callbacks need to be static functions. But, static functions
@@ -72,7 +72,7 @@ class Client : public WaypointGUI {
   exit(1);
 }
 
-static void ClickedRemoveWP(Fl_Widget * w, void * userdata, waypointlibrarystub wc) {
+static void ClickedRemoveWP(Fl_Widget * w, void * userdata) {
   Client* anInstance = (Client*)userdata;
   Fl_Input_Choice * theWPChoice = anInstance->frWps;
   std::string selected(theWPChoice->value());
