@@ -57,7 +57,7 @@
 
 class Client : public WaypointGUI {
 
-  waypointlibrarystub wc;
+  static waypointlibrarystub wc;
 
    /** ClickedX is one of the callbacks for GUI controls.
     * Callbacks need to be static functions. But, static functions
