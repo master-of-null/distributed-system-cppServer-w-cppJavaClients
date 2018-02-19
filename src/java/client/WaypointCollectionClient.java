@@ -184,31 +184,16 @@ public class WaypointCollectionClient extends WaypointGUI implements
     wc.add(wp);
   }
 
-  private void modifyWP(String name) {
-    JSONObject json = hashi.getJSONObject(name);
-    double lat, lon, ele;
-    String addr;
-
-    lat = Double.parseDouble(latIn.getText());
-    lon = Double.parseDouble(lonIn.getText());
-    ele = Double.parseDouble(eleIn.getText());
-    name = nameIn.getText();
-    addr = addrIn.getText();
-    json.put("address", addr);
-    json.put("name", name);
-    json.put("lon", lon);
-    json.put("lat", lat);
-    json.put("ele", ele);
-  }
-
   private void removeWps(String from, String to) {
     if(!to.equals("to waypoint")){
       toWps.removeItem(toWps.getSelectedItem());
       hashi.remove(to);
+      wc.remove(to);
     }
     if(!from.equals("from waypoint")) {
       frWps.removeItem(frWps.getSelectedItem());
       hashi.remove(from);
+      wc.remove(from);
     }
   }
 
