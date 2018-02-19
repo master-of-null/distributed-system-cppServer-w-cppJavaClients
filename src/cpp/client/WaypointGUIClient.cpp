@@ -72,7 +72,8 @@ class Client : public WaypointGUI {
 }
 
 static void ClickedRemoveWP(Fl_Widget * w, void * userdata) {
-  waypointlibrarystub wc = connectToServer(host);
+  jsonrpc::HttpClient httpclient(host);
+  waypointlibrarystub wc(httpclient);
   Client* anInstance = (Client*)userdata;
   Fl_Input_Choice * theWPChoice = anInstance->frWps;
   std::string selected(theWPChoice->value());
@@ -93,88 +94,91 @@ static void ClickedRemoveWP(Fl_Widget * w, void * userdata) {
      wc.remove(selected);
    }
 
-   static void ClickedAddWP(Fl_Widget * w, void * userdata) {
-      waypointlibrarystub wc = connectToServer(host);
-      Client* anInstance = (Client*)userdata;
-      Fl_Input_Choice * fromWPChoice = anInstance->frWps;
-      Fl_Input_Choice * toWPChoice = anInstance->toWps;
-      Fl_Input * theLat = anInstance->latIn;
-      Fl_Input * theLon = anInstance->lonIn;
-      Fl_Input * theEle = anInstance->eleIn;
-      Fl_Input * theName = anInstance->nameIn;
-      Fl_Multiline_Input *theAddr = anInstance->addrIn;
+  static void ClickedAddWP(Fl_Widget * w, void * userdata) {
+    jsonrpc::HttpClient httpclient(host);
+    waypointlibrarystub wc(httpclient);
+    Client* anInstance = (Client*)userdata;
+    Fl_Input_Choice * fromWPChoice = anInstance->frWps;
+    Fl_Input_Choice * toWPChoice = anInstance->toWps;
+    Fl_Input * theLat = anInstance->latIn;
+    Fl_Input * theLon = anInstance->lonIn;
+    Fl_Input * theEle = anInstance->eleIn;
+    Fl_Input * theName = anInstance->nameIn;
+    Fl_Multiline_Input *theAddr = anInstance->addrIn;
 
-      std::string lat(theLat->value()), lon(theLon->value()), ele(theEle->value());
-      double latNum = atof(lat.c_str());  //convert from string to double
-      double lonNum = atof(lon.c_str());
-      double eleNum = atof(ele.c_str());
+    std::string lat(theLat->value()), lon(theLon->value()), ele(theEle->value());
+    double latNum = atof(lat.c_str());  //convert from string to double
+    double lonNum = atof(lon.c_str());
+    double eleNum = atof(ele.c_str());
 
-      std::string name(theName->value());
-      string addr(theAddr->value());
-      
-      std::string jsonStr = "{\"name\":\""+name+
-        "\",\"address\":\""+addr+"\""+
-        "\",\"ele\":\"\""+
-        "\",\"lat\":\"\""+
-        "\",\"lon\":\"\"}";
+    std::string name(theName->value());
+    string addr(theAddr->value());
+    
+    std::string jsonStr = "{\"name\":\""+name+
+      "\",\"address\":\""+addr+"\""+
+      "\",\"ele\":\"\""+
+      "\",\"lat\":\"\""+
+      "\",\"lon\":\"\"}";
 
-      Json::Value root;
-      Json::Reader reader;
-      reader.parse(jsonStr.c_str(), root);
+    Json::Value root;
+    Json::Reader reader;
+    reader.parse(jsonStr.c_str(), root);
 
-      root["ele"] = eleNum;
-      root["lat"] = latNum;
-      root["lon"] = lonNum;
+    root["ele"] = eleNum;
+    root["lat"] = latNum;
+    root["lon"] = lonNum;
 
-      wc.add(root);
+    wc.add(root);
 
-      fromWPChoice->add(name.c_str());
-      toWPChoice->add(name.c_str());
-      fromWPChoice->value(name.c_str());
+    fromWPChoice->add(name.c_str());
+    toWPChoice->add(name.c_str());
+    fromWPChoice->value(name.c_str());
    }
 
   static void ClickedModifyWP(Fl_Widget *w, void *userdata) {
-      waypointlibrarystub wc = connectToServer(host);
-      Client* anInstance = (Client*)userdata;
-      Fl_Input_Choice * fromWPChoice = anInstance->frWps;
-      Fl_Input_Choice * toWPChoice = anInstance->toWps;
-      Fl_Input * theLat = anInstance->latIn;
-      Fl_Input * theLon = anInstance->lonIn;
-      Fl_Input * theEle = anInstance->eleIn;
-      Fl_Input * theName = anInstance->nameIn;
-      Fl_Multiline_Input *theAddr = anInstance->addrIn;
+    jsonrpc::HttpClient httpclient(host);
+    waypointlibrarystub wc(httpclient);
+    Client* anInstance = (Client*)userdata;
+    Fl_Input_Choice * fromWPChoice = anInstance->frWps;
+    Fl_Input_Choice * toWPChoice = anInstance->toWps;
+    Fl_Input * theLat = anInstance->latIn;
+    Fl_Input * theLon = anInstance->lonIn;
+    Fl_Input * theEle = anInstance->eleIn;
+    Fl_Input * theName = anInstance->nameIn;
+    Fl_Multiline_Input *theAddr = anInstance->addrIn;
 
-      std::string lat(theLat->value()), lon(theLon->value()), ele(theEle->value());
-      double latNum = atof(lat.c_str());  //convert from string to double
-      double lonNum = atof(lon.c_str());
-      double eleNum = atof(ele.c_str());
+    std::string lat(theLat->value()), lon(theLon->value()), ele(theEle->value());
+    double latNum = atof(lat.c_str());  //convert from string to double
+    double lonNum = atof(lon.c_str());
+    double eleNum = atof(ele.c_str());
 
-      std::string name(theName->value());
-      string addr(theAddr->value());
-      
-      std::string jsonStr = "{\"name\":\""+name+
-        "\",\"address\":\""+addr+"\""+
-        "\",\"ele\":\"\""+
-        "\",\"lat\":\"\""+
-        "\",\"lon\":\"\"}";
+    std::string name(theName->value());
+    string addr(theAddr->value());
+    
+    std::string jsonStr = "{\"name\":\""+name+
+      "\",\"address\":\""+addr+"\""+
+      "\",\"ele\":\"\""+
+      "\",\"lat\":\"\""+
+      "\",\"lon\":\"\"}";
 
-      Json::Value root;
-      Json::Reader reader;
-      reader.parse(jsonStr.c_str(), root);
+    Json::Value root;
+    Json::Reader reader;
+    reader.parse(jsonStr.c_str(), root);
 
-      root["ele"] = eleNum;
-      root["lat"] = latNum;
-      root["lon"] = lonNum;
+    root["ele"] = eleNum;
+    root["lat"] = latNum;
+    root["lon"] = lonNum;
 
-      wc.add(root);
+    wc.add(root);
 
-      fromWPChoice->add(name.c_str());
-      toWPChoice->add(name.c_str());
-      fromWPChoice->value(name.c_str());
+    fromWPChoice->add(name.c_str());
+    toWPChoice->add(name.c_str());
+    fromWPChoice->value(name.c_str());
   }
 
   static void SelectedFromWP(Fl_Widget * w, void * userdata) { // done
-    waypointlibrarystub wc = connectToServer(host);
+    jsonrpc::HttpClient httpclient(host);
+    waypointlibrarystub wc(httpclient);
     Client* anInstance = (Client*)userdata;
     Fl_Input_Choice * frWps = anInstance->frWps;
     Fl_Input * theLat = anInstance->latIn;
@@ -202,7 +206,8 @@ static void ClickedRemoveWP(Fl_Widget * w, void * userdata) {
   }
 
   static void SelectedToWP(Fl_Widget * w, void * userdata) {
-    waypointlibrarystub wc = connectToServer(host);
+    jsonrpc::HttpClient httpclient(host);
+    waypointlibrarystub wc(httpclient);
     Client* anInstance = (Client*)userdata;
     Fl_Input_Choice * toWps = anInstance->toWps;
     Fl_Input * theLat = anInstance->latIn;
@@ -232,7 +237,8 @@ static void ClickedRemoveWP(Fl_Widget * w, void * userdata) {
 
 
   static void printWaypoints() {
-    waypointlibrarystub wc = connectToServer(host);
+    jsonrpc::HttpClient httpclient(host);
+    waypointlibrarystub wc(httpclient);
     Json::Value names = wc.getNames();
     std::cout << names << std::endl;
   }
@@ -250,7 +256,8 @@ static void ClickedRemoveWP(Fl_Widget * w, void * userdata) {
   }
 
   static void getDistanceAndBearing(Fl_Widget *w, void *userdata) {
-    waypointlibrarystub wc = connectToServer(host);
+    jsonrpc::HttpClient httpclient(host);
+    waypointlibrarystub wc(httpclient);
     Client* anInstance = (Client*)userdata;
     Fl_Input_Choice * frWps = anInstance->frWps;
     Fl_Input_Choice * toWps = anInstance->toWps;
@@ -280,7 +287,8 @@ static void ClickedRemoveWP(Fl_Widget * w, void * userdata) {
   }
 
   static void resetNames(void * userdata) {
-    waypointlibrarystub wc = connectToServer(host);
+    jsonrpc::HttpClient httpclient(host);
+    waypointlibrarystub wc(httpclient);
     Json::Value names = wc.getNames();
     Client* anInstance = (Client*)userdata;
     Fl_Input_Choice * fromWPChoice = anInstance->frWps;
