@@ -54,7 +54,7 @@
 
 // using namespace jsonrpc;
 
-
+string host;
 
 class Client : public WaypointGUI {
    /** ClickedX is one of the callbacks for GUI controls.
@@ -64,7 +64,6 @@ class Client : public WaypointGUI {
     * function. The callback then accesses whatever GUI control object
     * that it needs for implementing its functionality.
     */
-  static string host;
 
 
  static void ClickedX(Fl_Widget * w, void * userdata) {
