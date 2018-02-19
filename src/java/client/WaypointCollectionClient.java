@@ -3,9 +3,16 @@ package sample.waypoint.client;
 import java.io.*;
 import java.util.*;
 import java.net.URL;
-import org.json.JSONObject;
-import org.json.JSONArray;
 
+import org.json.*;
+
+import javax.swing.*;
+import java.io.*;
+import javax.swing.event.*;
+import javax.swing.text.html.*;
+import java.awt.event.*;
+import java.awt.*;
+import java.util.*;
 /**
  * Copyright (c) 2016 Tim Lindquist,
  * Software Engineering,
