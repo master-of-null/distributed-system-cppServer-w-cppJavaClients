@@ -94,11 +94,11 @@ public class WaypointCollectionClient extends WaypointGUI implements
          removeWps(frWps.getSelectedItem().toString(),
          toWps.getSelectedItem().toString());
       }else if(e.getActionCommand().equals("Add")) {
-         // debug("you clicked Add Waypoint");
-         // addWp();
-         // frWps.addItem(nameIn.getText());
-         // toWps.addItem(nameIn.getText());
-         // distBearIn.setText("Added: "+nameIn.getText());
+         debug("you clicked Add Waypoint");
+         addWp();
+         frWps.addItem(nameIn.getText());
+         toWps.addItem(nameIn.getText());
+         distBearIn.setText("Added: "+nameIn.getText());
       }else if(e.getActionCommand().equals("Modify")) {
          debug("you clicked Modify Waypoint");
          // modifyWP(nameIn.getText());
@@ -141,7 +141,7 @@ public class WaypointCollectionClient extends WaypointGUI implements
 
     private void exportFile() {
       try {
-          FileWriter file = new FileWriter("generatedWaypoints.json");
+          FileWriter file = new FileWriter("waypoints.json");
           file.write(hashi.toString());
           file.flush();
           file.close();
@@ -151,23 +151,23 @@ public class WaypointCollectionClient extends WaypointGUI implements
       }
     }
 
-    // private void addWp() {
-    //   double lat, lon, ele;
-    //   String name, addr;
-    //   lat = Double.parseDouble(latIn.getText());
-    //   lon = Double.parseDouble(lonIn.getText());
-    //   ele = Double.parseDouble(eleIn.getText());
-    //   name = nameIn.getText();
-    //   addr = addrIn.getText();
+    private void addWp() {
+      double lat, lon, ele;
+      String name, addr;
+      lat = Double.parseDouble(latIn.getText());
+      lon = Double.parseDouble(lonIn.getText());
+      ele = Double.parseDouble(eleIn.getText());
+      name = nameIn.getText();
+      addr = addrIn.getText();
 
-    //   JSONObject json = new JSONObject();
-    //   json.put("address", addr);
-    //   json.put("name", name);
-    //   json.put("lon", lon);
-    //   json.put("lat", lat);
-    //   json.put("ele", ele);
-    //   hashi.put(name, json);
-    // }
+      JSONObject json = new JSONObject();
+      json.put("address", addr);
+      json.put("name", name);
+      json.put("lon", lon);
+      json.put("lat", lat);
+      json.put("ele", ele);
+      hashi.put(name, json);
+    }
 
     // private void modifyWP(String name) {
     //   JSONObject json = hashi.getJSONObject(name);
