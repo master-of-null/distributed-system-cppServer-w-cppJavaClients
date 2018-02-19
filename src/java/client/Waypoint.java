@@ -36,13 +36,12 @@ public class Waypoint {
    public Waypoint name, address;
    public double ele, lat, lon;
 
-   public Waypoint(String name, String address, double ele, double lat, double lon){
-      this.name = name;
-      this.address = address;
-      this.ele = ele;
-      this.lat = lat;
-      this.lon = lon;
-      this.takes.addAll(Arrays.asList(courses));
+   public Waypoint(String aName, String aAddress, double aEle, double aLat, double aLon){
+      name = aName;
+      address = aAddress;
+      ele = aEle;
+      lat = aLat;
+      lon = aLon;
    }
 
    public Waypoint(String jsonStr){
